@@ -54,7 +54,50 @@
 <dl class="function">
 <dt id="hydrostats.metrics.kge_2012">
 <code class="descclassname">hydrostats.metrics.</code><code class="descname">kge_2012</code><span class="sig-paren">(</span><em>simulated_array</em>, <em>observed_array</em>, <em>s=(1</em>, <em>1</em>, <em>1)</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/metrics.html#kge_2012"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.metrics.kge_2012" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Compute the Kling-Gupta efficiency (2012).</p>
+<p><strong>Range:</strong> -inf &lt; KGE (2012) &lt; 1, does not indicate bias, larger is
+better.</p>
+<p><strong>Notes:</strong> The modified version of the KGE (2009). Kling proposed this
+version to avoid cross-correlation between bias and variability ratios.</p>
+<p><strong>Parameters</strong></p>
+<p>forecasted_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of forecasted data from the time series.</div></blockquote>
+<p>observed_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of observed data from the time series.</div></blockquote>
+<p>s: <em>tuple of length three</em></p>
+<blockquote>
+<div>representing the scaling factors to be used for re-scaling the
+Pearson product-moment correlation coefficient (r), Alpha, and Beta,
+respectively.</div></blockquote>
+<p>replace_nan: <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace NaN values with in the two
+arrays. If None, when a NaN value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>replace_inf <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace Inf values with in the two
+arrays. If None, when an inf value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>remove_neg <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, negative numbers will be removed from the observed and
+simulated arrays.</div></blockquote>
+<p>remove_zero <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, zeros will be removed from the observed and simulated
+arrays.</div></blockquote>
+<p><strong>References:</strong></p>
+<ul class="simple">
+<li>Kling, H., Fuchs, M., &amp; Paulin, M. (2012). Runoff conditions in the
+upper Danube basin under an ensemble of climate change scenarios.
+Journal of Hydrology, 424, 264-277.</li>
+</ul>
+</dd></dl>
 
 </div>
 

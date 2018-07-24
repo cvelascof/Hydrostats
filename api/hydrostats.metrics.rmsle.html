@@ -54,10 +54,53 @@
 <dl class="function">
 <dt id="hydrostats.metrics.rmsle">
 <code class="descclassname">hydrostats.metrics.</code><code class="descname">rmsle</code><span class="sig-paren">(</span><em>simulated_array</em>, <em>observed_array</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/metrics.html#rmsle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.metrics.rmsle" title="Permalink to this definition">¶</a></dt>
-<dd><p>“Return the Root Mean Square Log Error. Note that to calculate the log
-values, each value in the observed and simulated array is increased by
-one unit in order to avoid run-time errors and nan values. arguments:
-simulated array, observed array</p>
+<dd><p>Compute the root mean square log error between the simulated and
+observed data.</p>
+<p><strong>Range:</strong> 0 ≤ RMSLE &lt; inf. Smaller is better, and it does not indicate
+bias.</p>
+<p><strong>Notes:</strong> Random errors do not cancel while using this metric. This
+metric also limits the impact of outliers by more evenly weighting high
+and low values. To calculate the log values, each value in the observed
+and simulated array is increased by one unit in order to avoid run-time
+errors and nan values (function np.log1p).</p>
+<p><strong>Parameters</strong></p>
+<p>forecasted_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of forecasted data from the time series.</div></blockquote>
+<p>observed_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of observed data from the time series.</div></blockquote>
+<p>replace_nan: <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace NaN values with in the two
+arrays. If None, when a NaN value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation. If None, when a
+NaN value is found at the i-th position in the observed OR simulated
+array, the i-th value of the observed and simulated array are removed
+before the computation.</div></blockquote>
+<p>replace_inf <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace Inf values with in the two
+arrays. If None, when an inf value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>remove_neg <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, negative numbers will be removed from the observed and
+simulated arrays.</div></blockquote>
+<p>remove_zero <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, zeros will be removed from the observed and simulated
+arrays.</div></blockquote>
+<p><strong>References:</strong></p>
+<ul class="simple">
+<li>Tornquist, L., Vartia, P., Vartia, Y.O., 1985. How Should Relative
+Changes be Measured? The American Statistician 43-46.</li>
+<li>Willmott, C.J., Matsuura, K., 2005. Advantages of the mean absolute
+error (MAE) over the root mean square error (RMSE) in assessing
+average model performance. Climate Research 30(1) 79-82.</li>
+</ul>
 </dd></dl>
 
 </div>

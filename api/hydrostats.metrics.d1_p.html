@@ -54,25 +54,49 @@
 <dl class="function">
 <dt id="hydrostats.metrics.d1_p">
 <code class="descclassname">hydrostats.metrics.</code><code class="descname">d1_p</code><span class="sig-paren">(</span><em>simulated_array</em>, <em>observed_array</em>, <em>obs_bar_p=None</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/metrics.html#d1_p"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.metrics.d1_p" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>simulated_array</strong> – array of simulated data. :param observed_array:</td>
-</tr>
-</tbody>
-</table>
-<p>array of observed data :param obs_bar_p: The term (obs_bar_p) is a
-seasonal or other selected average. If not obs_bar_p is given, the mean
-of the observed data will be used instead. :param replace_nan: Float
-input indicating what value to replace NaN values with. :param
-replace_inf: Float input indicating what value to replace Inf values
-with. :param remove_neg: Boolean input indicating whether user wants to
-remove negative numbers. :param remove_zero: Boolean input indicating
-whether user wants to remove zero values. :return: the Legate-McCabe
-Index of Agreement. Range: 0 ≤ d1_p &lt; 1, unit less, larger is better,
-does not indicate bias, less weight to outliers.</p>
-<p>(Legates and McCabe Jr, 1999)</p>
+<dd><p>Compute the Legate-McCabe Index of Agreement.</p>
+<p><strong>Range:</strong> 0 ≤ d1’ &lt; 1, does not indicate bias, larger is better.</p>
+<p><strong>Notes:</strong> The obs_bar_p argument represents a seasonal or other
+selected average.</p>
+<p><strong>Parameters</strong></p>
+<p>forecasted_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of forecasted data from the time series.</div></blockquote>
+<p>observed_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of observed data from the time series.</div></blockquote>
+<p>obs_bar_p: <em>float</em></p>
+<blockquote>
+<div>Seasonal or other selected average. If None, the mean of the observed
+array will be used.</div></blockquote>
+<p>replace_nan: <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace NaN values with in the two
+arrays. If None, when a NaN value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>replace_inf <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace Inf values with in the two
+arrays. If None, when an inf value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>remove_neg <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, negative numbers will be removed from the observed and
+simulated arrays.</div></blockquote>
+<p>remove_zero <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, zeros will be removed from the observed and simulated
+arrays.</div></blockquote>
+<p><strong>References:</strong></p>
+<ul class="simple">
+<li>Legates, D.R., McCabe Jr, G.J., 1999. Evaluating the use of
+“goodness‐of‐fit” Measures in hydrologic and hydroclimatic model
+validation. Water Resources Research 35(1) 233-241. Lehmann, E.L.,
+Casella, G., 1998. Springer Texts in Statistics. Springer-Verlag, New
+York.</li>
+</ul>
 </dd></dl>
 
 </div>

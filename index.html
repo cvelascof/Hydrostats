@@ -48,29 +48,49 @@
   <div class="section" id="welcome-to-hydrostats-s-documentation">
 <h1>Welcome to hydrostats’s documentation!<a class="headerlink" href="#welcome-to-hydrostats-s-documentation" title="Permalink to this headline">¶</a></h1>
 <p>Hydrostats is a library of tools and functions for users working with timeseries data. It has tools
-for preprocessing data,</p>
+for preprocessing data, visualizing data, and for calculating error metrics on observed and
+predicted time series. It has over 60 error metrics, with many metrics specific to the field of
+hydrology.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
 <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>Hydrostats is freely available on the Python Package index repository (PyPI). It can be installed with the
-following command using either virtualenv or Anaconda.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">hydrostats</span>
+<p>Hydrostats is freely available on the Python Package index repository (PyPI). It can be installed
+with the following command using either virtualenv or Anaconda.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install hydrostats
 </pre></div>
 </div>
-<div class="highlight-error notranslate"><div class="highlight"><pre><span></span>**RuntimeError**: Python is not installed as a framework. The Mac OS X backend will not be able
-to function correctly if Python is not installed as a framework. See the Python documentation for
+<p>When installing hydrostats on Mac OSX operating system, you may get the following error when trying
+to run python scripts using hydrostats in an IDE such as PyCharm.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>**RuntimeError**: Python is not installed as a framework. The Mac OS X backend will not be able
+to <span class="k">function</span> correctly <span class="k">if</span> Python is not installed as a framework. See the Python documentation <span class="k">for</span>
 more information on installing Python as a framework on Mac OS X. Please either reinstall Python
 as a framework, or try one of the other backends.
 </pre></div>
 </div>
+<p>If this happens, you will need to manually change the backend for use in your IDE. This can be done
+by running the following commands in the terminal:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt install nano <span class="c1"># If you have not already installed it</span>
+vi ~/.matplotlib/matplotlibrc <span class="c1"># Create a file called matplotlibrc</span>
+</pre></div>
+</div>
+<p>Add the following code to the file you created (hit i to insert text in vi editor):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>backend: TkAgg
+</pre></div>
+</div>
+<p>Then close the text document with esc, :wq.</p>
+<p>For more information about backends, read <a class="reference external" href="https://matplotlib.org/faq/usage_faq.html#what-is-a-backend">here</a></p>
 </div>
 <div class="section" id="hydrostats-package">
 <h1>hydrostats package<a class="headerlink" href="#hydrostats-package" title="Permalink to this headline">¶</a></h1>
+<p>The hydrostats package is divided into different modules that contain different functions for users
+to analyze time series data. All of the modules are listed below, with their respective functions.
+Each function has a link to it’s respective documentation page.</p>
 <div class="section" id="module-hydrostats.analyze">
 <span id="hydrostats-analyze-module"></span><h2>hydrostats.analyze Module<a class="headerlink" href="#module-hydrostats.analyze" title="Permalink to this headline">¶</a></h2>
-<p>Created on June 6 15:40:57, 2018 &#64;author: Wade Roberts</p>
+<p>The analyze module contains functions that perform a more complex
+analysis of simulated and observed time series data.</p>
 <div class="section" id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="longtable docutils">
@@ -161,82 +181,73 @@ as a framework, or try one of the other backends.
 <td>Compute the root mean square error between the simulated and observed data.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.rmsle.html#hydrostats.metrics.rmsle" title="hydrostats.metrics.rmsle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmsle</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>“Return the Root Mean Square Log Error.</td>
+<td>Compute the root mean square log error between the simulated and observed data.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.mase.html#hydrostats.metrics.mase" title="hydrostats.metrics.mase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mase</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;m,&nbsp;…])</td>
-<td>Returns the Mean Absolute Scaled Error, the default period for m (seasonal period) is 1.</td>
+<td>Compute the mean absolute scaled error between the simulated and observed data.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.r_squared.html#hydrostats.metrics.r_squared" title="hydrostats.metrics.r_squared"><code class="xref py py-obj docutils literal notranslate"><span class="pre">r_squared</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the Coefficient of Determination arguments: simulated array, observed array</td>
+<td>Compute the the Coefficient of Determination (r2).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.acc.html#hydrostats.metrics.acc" title="hydrostats.metrics.acc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">acc</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">param simulated_array:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">A 1D Numpy array of forecasted data from the</td>
-</tr>
-</tbody>
-</table>
-</td>
+<td>Compute the the anomaly correlation coefficient (ACC).</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.mape.html#hydrostats.metrics.mape" title="hydrostats.metrics.mape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mape</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the Mean Absolute Percentage Error.</td>
+<td>Compute the the mean absolute percentage error (MAPE).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.mapd.html#hydrostats.metrics.mapd" title="hydrostats.metrics.mapd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mapd</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the Mean Absolute Percentage Deviation.</td>
+<td>Compute the the mean absolute percentage deviation (MAPE).</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.smape1.html#hydrostats.metrics.smape1" title="hydrostats.metrics.smape1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smape1</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the Symmetric Mean Absolute Percentage Error (1).</td>
+<td>Compute the the Symmetric Mean Absolute Percentage Error (1) (SMAPE1).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.smape2.html#hydrostats.metrics.smape2" title="hydrostats.metrics.smape2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smape2</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the Symmetric Mean Absolute Percentage Error (2).</td>
+<td>Compute the the Symmetric Mean Absolute Percentage Error (2) (SMAPE2).</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.d.html#hydrostats.metrics.d" title="hydrostats.metrics.d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">d</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the Index of Agreement (d).</td>
+<td>Compute the the index of agreement (d).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.d1.html#hydrostats.metrics.d1" title="hydrostats.metrics.d1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">d1</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the Index of Agreement (d1).</td>
+<td>Compute the the index of agreement (d1).</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.dr.html#hydrostats.metrics.dr" title="hydrostats.metrics.dr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dr</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the Refined Index of Agreement.</td>
+<td>Compute the the refined index of agreement (dr).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.drel.html#hydrostats.metrics.drel" title="hydrostats.metrics.drel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drel</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the Relative Index of Agreement.</td>
+<td>Compute the the relative index of agreement (drel).</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.dmod.html#hydrostats.metrics.dmod" title="hydrostats.metrics.dmod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dmod</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;j,&nbsp;…])</td>
-<td>Returns the modified index of agreement, with j=1 as the default.</td>
+<td>Compute the the modified index of agreement (dmod).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.watt_m.html#hydrostats.metrics.watt_m" title="hydrostats.metrics.watt_m"><code class="xref py py-obj docutils literal notranslate"><span class="pre">watt_m</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns Watterson’s M value.</td>
+<td>Compute Watterson’s M (M).</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.mb_r.html#hydrostats.metrics.mb_r" title="hydrostats.metrics.mb_r"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mb_r</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the Mielke-Berry R value.</td>
+<td>Compute Mielke-Berry R value (MB R).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.nse.html#hydrostats.metrics.nse" title="hydrostats.metrics.nse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nse</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the Nash-Sutcliffe Efficiency value (Nash JE, Sutcliffe JV.</td>
+<td>Compute the Nash-Sutcliffe Efficiency.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.nse_mod.html#hydrostats.metrics.nse_mod" title="hydrostats.metrics.nse_mod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nse_mod</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the modified Nash-Sutcliffe Efficiency value (Krause, P., Boyle, D.</td>
+<td>Compute the modified Nash-Sutcliffe efficiency (NSE mod).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.nse_rel.html#hydrostats.metrics.nse_rel" title="hydrostats.metrics.nse_rel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nse_rel</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the relative Nash-Sutcliffe Efficiency value (Krause, P., Boyle, D.</td>
+<td>Compute the relative Nash-Sutcliffe efficiency (NSE rel).</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.lm_index.html#hydrostats.metrics.lm_index" title="hydrostats.metrics.lm_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lm_index</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the Legate-McCabe Efficiency Index.</td>
+<td>Compute the Legate-McCabe Efficiency Index.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.sa.html#hydrostats.metrics.sa" title="hydrostats.metrics.sa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sa</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the spectral angle.</td>
+<td>Compute the Spectral Angle (SA).</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.sc.html#hydrostats.metrics.sc" title="hydrostats.metrics.sc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sc</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the spectral Correlation.</td>
+<td>Compute the Spectral Correlation (SC).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.sid.html#hydrostats.metrics.sid" title="hydrostats.metrics.sid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sid</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the ___ arguments: simulated array, observed array</td>
+<td>Compute the Spectral Information Divergence (SID).</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.sga.html#hydrostats.metrics.sga" title="hydrostats.metrics.sga"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sga</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the spectral gradient angle arguments: simulated array, observed array</td>
+<td>Compute the Spectral Gradient Angle (SGA).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.h1_mhe.html#hydrostats.metrics.h1_mhe" title="hydrostats.metrics.h1_mhe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">h1_mhe</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
 <td>H1 Metric: Methods from Tornqvist L, Vartia P, and Vartia YO.</td>
@@ -335,77 +346,38 @@ as a framework, or try one of the other backends.
 <td>Compute the mean squared log error of the simulated and observed data.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.nrmse_range.html#hydrostats.metrics.nrmse_range" title="hydrostats.metrics.nrmse_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nrmse_range</span></code></a>(simulated_array,&nbsp;observed_array)</td>
-<td>“Return the Normalized Root Mean Square Error.</td>
+<td>Compute the range normalized root mean square error between the simulated and observed data.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.nrmse_mean.html#hydrostats.metrics.nrmse_mean" title="hydrostats.metrics.nrmse_mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nrmse_mean</span></code></a>(simulated_array,&nbsp;observed_array)</td>
-<td>“Return the mean Normalized Root Mean Square Error.</td>
+<td>Compute the range normalized root mean square error between the simulated and observed data.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.nrmse_iqr.html#hydrostats.metrics.nrmse_iqr" title="hydrostats.metrics.nrmse_iqr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nrmse_iqr</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>“Return the interquartile range Normalized Root Mean Square Error.</td>
+<td>Compute the range normalized root mean square error between the simulated and observed data.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.maape.html#hydrostats.metrics.maape" title="hydrostats.metrics.maape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">maape</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Returns the Mean Arctangent Absolute Percentage Error.</td>
+<td>Compute the the Mean Arctangent Absolute Percentage Error (MAAPE).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.d1_p.html#hydrostats.metrics.d1_p" title="hydrostats.metrics.d1_p"><code class="xref py py-obj docutils literal notranslate"><span class="pre">d1_p</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">param simulated_array:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">array of simulated data. :param observed_array:</td>
-</tr>
-</tbody>
-</table>
-</td>
+<td>Compute the Legate-McCabe Index of Agreement.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.ve.html#hydrostats.metrics.ve" title="hydrostats.metrics.ve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ve</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Range: 0≤VE&lt;1 (Unitless) smaller is better, does not indicate bias, error as a percentage of flow.</td>
+<td>Compute the Volumetric Efficiency (VE).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.pearson_r.html#hydrostats.metrics.pearson_r" title="hydrostats.metrics.pearson_r"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pearson_r</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td>Compute the median along the specified axis.</td>
+<td>Compute the pearson correlation coefficient.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.spearman_r.html#hydrostats.metrics.spearman_r" title="hydrostats.metrics.spearman_r"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spearman_r</span></code></a>(simulated_array,&nbsp;observed_array)</td>
-<td><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">param simulated_array:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><table class="first last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">param observed_array:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><table class="first last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">param replace_nan:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"></td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
+<td>Compute the spearman rank correlation coefficient.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="api/hydrostats.metrics.kge_2009.html#hydrostats.metrics.kge_2009" title="hydrostats.metrics.kge_2009"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kge_2009</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td></td>
+<td>Compute the Kling-Gupta efficiency (2009).</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/hydrostats.metrics.kge_2012.html#hydrostats.metrics.kge_2012" title="hydrostats.metrics.kge_2012"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kge_2012</span></code></a>(simulated_array,&nbsp;observed_array[,&nbsp;…])</td>
-<td></td>
+<td>Compute the Kling-Gupta efficiency (2012).</td>
 </tr>
 </tbody>
 </table>
 </div>
-</div>
-<div class="section" id="module-hydrostats.test">
-<span id="hydrostats-test-module"></span><h2>hydrostats.test Module<a class="headerlink" href="#module-hydrostats.test" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-hydrostats.visual">
 <span id="hydrostats-visual-module"></span><h2>hydrostats.visual Module<a class="headerlink" href="#module-hydrostats.visual" title="Permalink to this headline">¶</a></h2>
@@ -459,7 +431,6 @@ as a framework, or try one of the other backends.
 <li><a class="reference internal" href="#id2">Functions</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-hydrostats.test">hydrostats.test Module</a></li>
 <li><a class="reference internal" href="#module-hydrostats.visual">hydrostats.visual Module</a><ul>
 <li><a class="reference internal" href="#id3">Functions</a></li>
 </ul>

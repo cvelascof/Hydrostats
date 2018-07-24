@@ -54,10 +54,51 @@
 <dl class="function">
 <dt id="hydrostats.metrics.nse">
 <code class="descclassname">hydrostats.metrics.</code><code class="descname">nse</code><span class="sig-paren">(</span><em>simulated_array</em>, <em>observed_array</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/metrics.html#nse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.metrics.nse" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the Nash-Sutcliffe Efficiency value (Nash JE, Sutcliffe JV.
-1970. River flow forecasting through conceptual models part I—A
-discussion of principles. Journal of Hydrology 10(3): 282–290.)
-arguments: simulated array, observed array</p>
+<dd><p>Compute the Nash-Sutcliffe Efficiency.</p>
+<p><strong>Range:</strong> -inf &lt; NSE &lt; 1, does not indicate bias, larger is better.</p>
+<p><strong>Notes:</strong> The Nash-Sutcliffe efficiency metric compares prediction
+values to naive preditions (i.e. average value).</p>
+<p><strong>Parameters</strong></p>
+<p>forecasted_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of forecasted data from the time series.</div></blockquote>
+<p>observed_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of observed data from the time series.</div></blockquote>
+<p>replace_nan: <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace NaN values with in the two
+arrays. If None, when a NaN value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>replace_inf <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace Inf values with in the two
+arrays. If None, when an inf value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>remove_neg <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, negative numbers will be removed from the observed and
+simulated arrays.</div></blockquote>
+<p>remove_zero <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, zeros will be removed from the observed and simulated
+arrays.</div></blockquote>
+<p><strong>References:</strong></p>
+<ul class="simple">
+<li>Krause, P., Boyle, D., Bäse, F., 2005. Comparison of different
+efficiency criteria for hydrological model assessment. Advances in
+geosciences 5 89-97.</li>
+<li>McCuen, R.H., Knight, Z., Cutter, A.G., 2006. Evaluation of the
+Nash-Sutcliffe Efficiency Index. Journal of Hydraulic Engineering.</li>
+<li>Nash, J.E., Sutcliffe, J.V., 1970. River flow forecasting through
+conceptual models part I — A discussion of principles. Journal of
+Hydrology 282-290.</li>
+<li>Willmott, C.J., Robeson, S.M., Matsuura, K., 2012. A refined index of
+model performance. International Journal of Climatology 32(13)
+2088-2094.</li>
+</ul>
 </dd></dl>
 
 </div>

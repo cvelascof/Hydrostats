@@ -54,11 +54,50 @@
 <dl class="function">
 <dt id="hydrostats.metrics.nrmse_iqr">
 <code class="descclassname">hydrostats.metrics.</code><code class="descname">nrmse_iqr</code><span class="sig-paren">(</span><em>simulated_array</em>, <em>observed_array</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/metrics.html#nrmse_iqr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.metrics.nrmse_iqr" title="Permalink to this definition">¶</a></dt>
-<dd><p>“Return the interquartile range Normalized Root Mean Square Error. RMSE
-normalized by the interquartile range of the observed time series (x).
-The nRMSE allows comparison between data sets with different scales. The
-NRMSErange and NRMSEquartile are the most and least sensitive to
-outliers, respectively. (Pontius et al., 2008)</p>
+<dd><p>Compute the range normalized root mean square error between the
+simulated and observed data.</p>
+<p><strong>Range:</strong> 0 ≤ NRMSE &lt; inf.</p>
+<p><strong>Notes:</strong> This metric is the RMSE normalized by the range of the
+observed time series (x). Normalizing allows comparison between data
+sets with different scales. The NRMSEquartile is the least sensitive to
+outliers of the three normalized rmse metrics.</p>
+<p><strong>Parameters</strong></p>
+<p>forecasted_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of forecasted data from the time series.</div></blockquote>
+<p>observed_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of observed data from the time series.</div></blockquote>
+<p>replace_nan: <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace NaN values with in the two
+arrays. If None, when a NaN value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation. If None, when a
+NaN value is found at the i-th position in the observed OR simulated
+array, the i-th value of the observed and simulated array are removed
+before the computation.</div></blockquote>
+<p>replace_inf <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace Inf values with in the two
+arrays. If None, when an inf value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>remove_neg <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, negative numbers will be removed from the observed and
+simulated arrays.</div></blockquote>
+<p>remove_zero <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, zeros will be removed from the observed and simulated
+arrays.</div></blockquote>
+<p><strong>References:</strong></p>
+<ul class="simple">
+<li>Pontius, R.G., Thontteh, O., Chen, H., 2008. Components of
+information for multiple resolution comparison between maps that
+share a real variable. Environmental and Ecological Statistics 15(2)
+111-142.</li>
+</ul>
 </dd></dl>
 
 </div>

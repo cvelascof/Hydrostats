@@ -54,8 +54,46 @@
 <dl class="function">
 <dt id="hydrostats.metrics.d">
 <code class="descclassname">hydrostats.metrics.</code><code class="descname">d</code><span class="sig-paren">(</span><em>simulated_array</em>, <em>observed_array</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/metrics.html#d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.metrics.d" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the Index of Agreement (d). arguments: simulated array, observed
-array</p>
+<dd><p>Compute the the index of agreement (d).</p>
+<p><strong>Range:</strong> 0 ≤ d &lt; 1, does not indicate bias, larger is better.</p>
+<p><strong>Notes:</strong> This metric is a modified approach to the Nash-Sutcliffe
+Efficiency metric.</p>
+<p><strong>Parameters</strong></p>
+<p>forecasted_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of forecasted data from the time series.</div></blockquote>
+<p>observed_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of observed data from the time series.</div></blockquote>
+<p>replace_nan: <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace NaN values with in the two
+arrays. If None, when a NaN value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>replace_inf <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace Inf values with in the two
+arrays. If None, when an inf value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>remove_neg <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, negative numbers will be removed from the observed and
+simulated arrays.</div></blockquote>
+<p>remove_zero <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, zeros will be removed from the observed and simulated
+arrays.</div></blockquote>
+<p><strong>References:</strong></p>
+<ul class="simple">
+<li>Legates, D.R., McCabe Jr, G.J., 1999. Evaluating the use of
+“goodness‐of‐fit” Measures in hydrologic and hydroclimatic model
+validation. Water Resources Research 35(1) 233-241.</li>
+<li>Willmott, C.J., Robeson, S.M., Matsuura, K., 2012. A refined index of
+model performance. International Journal of Climatology 32(13)
+2088-2094.</li>
+</ul>
 </dd></dl>
 
 </div>

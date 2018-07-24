@@ -68,11 +68,18 @@ not indicate bias. It is also sometimes referred to as the L2-norm.</p>
 <p>replace_nan: <em>float, optional</em></p>
 <blockquote>
 <div>If given, indicates which value to replace NaN values with in the two
-arrays.</div></blockquote>
+arrays. If None, when a NaN value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation. If None, when a
+NaN value is found at the i-th position in the observed OR simulated
+array, the i-th value of the observed and simulated array are removed
+before the computation.</div></blockquote>
 <p>replace_inf <em>float, optional</em></p>
 <blockquote>
 <div>If given, indicates which value to replace Inf values with in the two
-arrays.</div></blockquote>
+arrays. If None, when an inf value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
 <p>remove_neg <em>boolean, optional</em></p>
 <blockquote>
 <div>If true, negative numbers will be removed from the observed and

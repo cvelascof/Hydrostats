@@ -54,8 +54,42 @@
 <dl class="function">
 <dt id="hydrostats.metrics.ve">
 <code class="descclassname">hydrostats.metrics.</code><code class="descname">ve</code><span class="sig-paren">(</span><em>simulated_array</em>, <em>observed_array</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/metrics.html#ve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.metrics.ve" title="Permalink to this definition">¶</a></dt>
-<dd><p>Range: 0≤VE&lt;1 (Unitless) smaller is better, does not indicate bias,
-error as a percentage of flow. (Criss and Winston, 2008)</p>
+<dd><p>Compute the Volumetric Efficiency (VE).</p>
+<p><strong>Range:</strong> 0 ≤ VE &lt; 1 smaller is better, does not indicate bias.</p>
+<p><strong>Notes:</strong> Represents the error as a percentage of flow.</p>
+<p><strong>Parameters</strong></p>
+<p>forecasted_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of forecasted data from the time series.</div></blockquote>
+<p>observed_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of observed data from the time series.</div></blockquote>
+<p>replace_nan: <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace NaN values with in the two
+arrays. If None, when a NaN value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>replace_inf <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace Inf values with in the two
+arrays. If None, when an inf value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>remove_neg <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, negative numbers will be removed from the observed and
+simulated arrays.</div></blockquote>
+<p>remove_zero <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, zeros will be removed from the observed and simulated
+arrays.</div></blockquote>
+<p><strong>References:</strong></p>
+<ul class="simple">
+<li>Criss, R.E., Winston, W.E., 2008. Do Nash values have value?
+Discussion and alternate proposals. Hydrological Processes 22(14)
+2723.</li>
+</ul>
 </dd></dl>
 
 </div>
