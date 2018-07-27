@@ -15,7 +15,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mle" href="hydrostats.metrics.mle.html" />
+    <link rel="next" title="hydrostats.analyze Module" href="../Analysis.html" />
     <link rel="prev" title="g_mean_diff" href="hydrostats.metrics.g_mean_diff.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
@@ -35,12 +35,13 @@
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="hydrostats.metrics.mle.html" title="mle"
+          <a href="../Analysis.html" title="hydrostats.analyze Module"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="hydrostats.metrics.g_mean_diff.html" title="g_mean_diff"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Metrics.html" accesskey="U">hydrostats.metrics Module</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -54,7 +55,39 @@
 <dl class="function">
 <dt id="hydrostats.metrics.mean_var">
 <code class="descclassname">hydrostats.metrics.</code><code class="descname">mean_var</code><span class="sig-paren">(</span><em>simulated_array</em>, <em>observed_array</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/metrics.html#mean_var"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.metrics.mean_var" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Compute the mean variance.</p>
+<p><img alt="image0" src="https://github.com/waderoberts123/Hydrostats/blob/master/docs/pictures/MV.png?raw=true" /></p>
+<p><strong>Range:</strong></p>
+<p><strong>Notes:</strong></p>
+<p><strong>Parameters</strong></p>
+<p>simulated_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of simulated data from the time series.</div></blockquote>
+<p>observed_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of observed data from the time series.</div></blockquote>
+<p>replace_nan: <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace NaN values with in the two
+arrays. If None, when a NaN value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>replace_inf <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace Inf values with in the two
+arrays. If None, when an inf value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>remove_neg <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, negative numbers will be removed from the observed and
+simulated arrays.</div></blockquote>
+<p>remove_zero <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, zeros will be removed from the observed and simulated
+arrays.</div></blockquote>
+<p><strong>References:</strong></p>
+</dd></dl>
 
 </div>
 
@@ -64,12 +97,21 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Preprocessing.html">Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Visualization.html">hydrostats.visual Module</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Metrics.html">hydrostats.metrics Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis.html">hydrostats.analyze Module</a></li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="hydrostats.metrics.g_mean_diff.html"
                         title="previous chapter">g_mean_diff</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="hydrostats.metrics.mle.html"
-                        title="next chapter">mle</a></p>
+  <p class="topless"><a href="../Analysis.html"
+                        title="next chapter">hydrostats.analyze Module</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -103,12 +145,13 @@
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="hydrostats.metrics.mle.html" title="mle"
+          <a href="../Analysis.html" title="hydrostats.analyze Module"
              >next</a> |</li>
         <li class="right" >
           <a href="hydrostats.metrics.g_mean_diff.html" title="g_mean_diff"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Metrics.html" >hydrostats.metrics Module</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

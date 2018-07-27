@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mape" href="hydrostats.metrics.mape.html" />
-    <link rel="prev" title="r_squared" href="hydrostats.metrics.r_squared.html" />
+    <link rel="prev" title="spearman_r" href="hydrostats.metrics.spearman_r.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -38,9 +38,10 @@
           <a href="hydrostats.metrics.mape.html" title="mape"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="hydrostats.metrics.r_squared.html" title="r_squared"
+          <a href="hydrostats.metrics.spearman_r.html" title="spearman_r"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Metrics.html" accesskey="U">hydrostats.metrics Module</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -55,6 +56,7 @@
 <dt id="hydrostats.metrics.acc">
 <code class="descclassname">hydrostats.metrics.</code><code class="descname">acc</code><span class="sig-paren">(</span><em>simulated_array</em>, <em>observed_array</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/metrics.html#acc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.metrics.acc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the the anomaly correlation coefficient (ACC).</p>
+<p><img alt="image0" src="https://github.com/waderoberts123/Hydrostats/blob/master/docs/pictures/ACC.png?raw=true" /></p>
 <p><strong>Range:</strong> -1 ≤ ACC ≤ 1. -1 indicates perfect negative correlation of
 the variation pattern of the anomalies, 0 indicates complete randomness
 of the variation pattern of the anomalies, 1 indicates perfect
@@ -114,9 +116,18 @@ Review 117, no. 3 (1989): 572–82.</li>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Preprocessing.html">Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Visualization.html">hydrostats.visual Module</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Metrics.html">hydrostats.metrics Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis.html">hydrostats.analyze Module</a></li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="hydrostats.metrics.r_squared.html"
-                        title="previous chapter">r_squared</a></p>
+  <p class="topless"><a href="hydrostats.metrics.spearman_r.html"
+                        title="previous chapter">spearman_r</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="hydrostats.metrics.mape.html"
                         title="next chapter">mape</a></p>
@@ -156,9 +167,10 @@ Review 117, no. 3 (1989): 572–82.</li>
           <a href="hydrostats.metrics.mape.html" title="mape"
              >next</a> |</li>
         <li class="right" >
-          <a href="hydrostats.metrics.r_squared.html" title="r_squared"
+          <a href="hydrostats.metrics.spearman_r.html" title="spearman_r"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Metrics.html" >hydrostats.metrics Module</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

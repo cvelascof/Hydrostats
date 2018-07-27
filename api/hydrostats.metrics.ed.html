@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="ned" href="hydrostats.metrics.ned.html" />
-    <link rel="prev" title="mse" href="hydrostats.metrics.mse.html" />
+    <link rel="prev" title="mdse" href="hydrostats.metrics.mdse.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -38,9 +38,10 @@
           <a href="hydrostats.metrics.ned.html" title="ned"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="hydrostats.metrics.mse.html" title="mse"
+          <a href="hydrostats.metrics.mdse.html" title="mdse"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Metrics.html" accesskey="U">hydrostats.metrics Module</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -56,6 +57,7 @@
 <code class="descclassname">hydrostats.metrics.</code><code class="descname">ed</code><span class="sig-paren">(</span><em>simulated_array</em>, <em>observed_array</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/metrics.html#ed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.metrics.ed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the Euclidean distance between predicted and observed values in
 vector space.</p>
+<p><img alt="image0" src="https://github.com/waderoberts123/Hydrostats/blob/master/docs/pictures/ED.png?raw=true" /></p>
 <p><strong>Range</strong> 0 ≤ ED &lt; inf, smaller is better. <strong>Notes</strong> This metric does
 not indicate bias. It is also sometimes referred to as the L2-norm.</p>
 <p><strong>Parameters</strong></p>
@@ -105,9 +107,18 @@ metrics for ecohydrological studies. River Research and Applications,
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Preprocessing.html">Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Visualization.html">hydrostats.visual Module</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Metrics.html">hydrostats.metrics Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis.html">hydrostats.analyze Module</a></li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="hydrostats.metrics.mse.html"
-                        title="previous chapter">mse</a></p>
+  <p class="topless"><a href="hydrostats.metrics.mdse.html"
+                        title="previous chapter">mdse</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="hydrostats.metrics.ned.html"
                         title="next chapter">ned</a></p>
@@ -147,9 +158,10 @@ metrics for ecohydrological studies. River Research and Applications,
           <a href="hydrostats.metrics.ned.html" title="ned"
              >next</a> |</li>
         <li class="right" >
-          <a href="hydrostats.metrics.mse.html" title="mse"
+          <a href="hydrostats.metrics.mdse.html" title="mdse"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Metrics.html" >hydrostats.metrics Module</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

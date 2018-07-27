@@ -1,0 +1,6 @@
+mdae
+====
+
+.. currentmodule:: hydrostats.metrics
+
+.. autofunction:: mdae

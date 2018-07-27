@@ -15,6 +15,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="daily_std_error" href="hydrostats.data.daily_std_error.html" />
+    <link rel="prev" title="merge_data" href="hydrostats.data.merge_data.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -32,6 +34,12 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="hydrostats.data.daily_std_error.html" title="daily_std_error"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="hydrostats.data.merge_data.html" title="merge_data"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
       </ul>
     </div>  
@@ -60,6 +68,115 @@ MM/DD in the index and the two columns of the data averaged</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.analyze.make_table.html">make_table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.analyze.time_lag.html">time_lag</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.data.merge_data.html">merge_data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">daily_average</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.data.daily_std_error.html">daily_std_error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.data.daily_std_dev.html">daily_std_dev</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.data.monthly_average.html">monthly_average</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.data.monthly_std_error.html">monthly_std_error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.data.monthly_std_dev.html">monthly_std_dev</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.data.remove_nan_df.html">remove_nan_df</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.data.seasonal_period.html">seasonal_period</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.me.html">me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.mae.html">mae</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.mse.html">mse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.mle.html">mle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.male.html">male</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.msle.html">msle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.mde.html">mde</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.mdae.html">mdae</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.mdse.html">mdse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.ed.html">ed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.ned.html">ned</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.rmse.html">rmse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.rmsle.html">rmsle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.nrmse_range.html">nrmse_range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.nrmse_mean.html">nrmse_mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.nrmse_iqr.html">nrmse_iqr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.irmse.html">irmse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.mase.html">mase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.r_squared.html">r_squared</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.pearson_r.html">pearson_r</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.spearman_r.html">spearman_r</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.acc.html">acc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.mape.html">mape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.mapd.html">mapd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.maape.html">maape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.smape1.html">smape1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.smape2.html">smape2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.d.html">d</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.d1.html">d1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.dmod.html">dmod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.drel.html">drel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.dr.html">dr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.watt_m.html">watt_m</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.mb_r.html">mb_r</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.nse.html">nse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.nse_mod.html">nse_mod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.nse_rel.html">nse_rel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.kge_2009.html">kge_2009</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.kge_2012.html">kge_2012</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.lm_index.html">lm_index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.d1_p.html">d1_p</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.ve.html">ve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.sa.html">sa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.sc.html">sc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.sid.html">sid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.sga.html">sga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h1_mhe.html">h1_mhe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h1_ahe.html">h1_ahe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h1_rmshe.html">h1_rmshe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h2_mhe.html">h2_mhe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h2_ahe.html">h2_ahe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h2_rmshe.html">h2_rmshe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h3_mhe.html">h3_mhe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h3_ahe.html">h3_ahe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h3_rmshe.html">h3_rmshe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h4_mhe.html">h4_mhe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h4_ahe.html">h4_ahe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h4_rmshe.html">h4_rmshe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h5_mhe.html">h5_mhe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h5_ahe.html">h5_ahe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h5_rmshe.html">h5_rmshe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h6_mhe.html">h6_mhe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h6_ahe.html">h6_ahe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h6_rmshe.html">h6_rmshe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h7_mhe.html">h7_mhe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h7_ahe.html">h7_ahe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h7_rmshe.html">h7_rmshe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h8_mhe.html">h8_mhe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h8_ahe.html">h8_ahe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h8_rmshe.html">h8_rmshe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h10_mhe.html">h10_mhe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h10_ahe.html">h10_ahe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.h10_rmshe.html">h10_rmshe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.g_mean_diff.html">g_mean_diff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.metrics.mean_var.html">mean_var</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.visual.plot.html">plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.visual.hist.html">hist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.visual.scatter.html">scatter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostats.visual.qqplot.html">qqplot</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="hydrostats.data.merge_data.html"
+                        title="previous chapter">merge_data</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="hydrostats.data.daily_std_error.html"
+                        title="next chapter">daily_std_error</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -92,6 +209,12 @@ MM/DD in the index and the two columns of the data averaged</p>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="hydrostats.data.daily_std_error.html" title="daily_std_error"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="hydrostats.data.merge_data.html" title="merge_data"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
       </ul>
     </div>

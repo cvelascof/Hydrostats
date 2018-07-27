@@ -1,0 +1,6 @@
+irmse
+=====
+
+.. currentmodule:: hydrostats.metrics
+
+.. autofunction:: irmse

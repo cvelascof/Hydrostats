@@ -40,7 +40,8 @@
         <li class="right" >
           <a href="hydrostats.metrics.h5_mhe.html" title="h5_mhe"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Metrics.html" accesskey="U">hydrostats.metrics Module</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -54,7 +55,42 @@
 <dl class="function">
 <dt id="hydrostats.metrics.h5_ahe">
 <code class="descclassname">hydrostats.metrics.</code><code class="descname">h5_ahe</code><span class="sig-paren">(</span><em>simulated_array</em>, <em>observed_array</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/metrics.html#h5_ahe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.metrics.h5_ahe" title="Permalink to this definition">¶</a></dt>
-<dd><p>H5 Metric: Methods from Tornqvist L, Vartia P, and Vartia YO. (1985).</p>
+<dd><p>Compute the H5 mean absolute error.</p>
+<p><img alt="image0" src="https://github.com/waderoberts123/Hydrostats/blob/master/docs/pictures/H5.png?raw=true" /> <img alt="image1" src="https://github.com/waderoberts123/Hydrostats/blob/master/docs/pictures/AHE.png?raw=true" /></p>
+<p><strong>Range:</strong></p>
+<p><strong>Notes:</strong></p>
+<p><strong>Parameters</strong></p>
+<p>simulated_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of simulated data from the time series.</div></blockquote>
+<p>observed_array: <em>one dimensional ndarray</em></p>
+<blockquote>
+<div>An array of observed data from the time series.</div></blockquote>
+<p>replace_nan: <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace NaN values with in the two
+arrays. If None, when a NaN value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>replace_inf <em>float, optional</em></p>
+<blockquote>
+<div>If given, indicates which value to replace Inf values with in the two
+arrays. If None, when an inf value is found at the i-th position in
+the observed OR simulated array, the i-th value of the observed and
+simulated array are removed before the computation.</div></blockquote>
+<p>remove_neg <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, negative numbers will be removed from the observed and
+simulated arrays.</div></blockquote>
+<p>remove_zero <em>boolean, optional</em></p>
+<blockquote>
+<div>If true, zeros will be removed from the observed and simulated
+arrays.</div></blockquote>
+<p><strong>References:</strong></p>
+<ul class="simple">
+<li>Tornquist, L., Vartia, P., Vartia, Y.O., 1985. How Should Relative
+Changes be Measured? The American Statistician 43-46.</li>
+</ul>
 </dd></dl>
 
 </div>
@@ -65,6 +101,15 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Preprocessing.html">Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Visualization.html">hydrostats.visual Module</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Metrics.html">hydrostats.metrics Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis.html">hydrostats.analyze Module</a></li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="hydrostats.metrics.h5_mhe.html"
                         title="previous chapter">h5_mhe</a></p>
@@ -109,7 +154,8 @@
         <li class="right" >
           <a href="hydrostats.metrics.h5_mhe.html" title="h5_mhe"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Metrics.html" >hydrostats.metrics Module</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
