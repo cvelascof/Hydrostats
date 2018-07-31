@@ -62,14 +62,117 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;make_table&#39;</span><span class="p">,</span> <span class="s1">&#39;time_lag&#39;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="make_table"><a class="viewcode-back" href="../../api/hydrostats.analyze.make_table.html#hydrostats.analyze.make_table">[docs]</a><span class="k">def</span> <span class="nf">make_table</span><span class="p">(</span><span class="n">merged_dataframe</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">seasonal_periods</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mase_m</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dmod_j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nse_mod_j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h6_mhe_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-               <span class="n">h6_ahe_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h6_rmshe_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d1_p_obs_bar_p</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lm_x_obs_bar_p</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace_nan</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace_inf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-               <span class="n">remove_neg</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remove_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">to_csv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to_excel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates a table with metrics as specified by the user. Seasonal periods can also be specified in order to compare</span>
-<span class="sd">    different seasons and how well the simulated data matches the observed data. Has options to save the table to either</span>
-<span class="sd">    a csv or an excel workbook. Also has an option to add a column for the location of the data. See the official</span>
-<span class="sd">    documentation at https://waderoberts123.github.io/Hydrostats/ for a full explanation of all of the function</span>
-<span class="sd">    arguments as well as examples.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="make_table"><a class="viewcode-back" href="../../api/hydrostats.analyze.make_table.html#hydrostats.analyze.make_table">[docs]</a><span class="k">def</span> <span class="nf">make_table</span><span class="p">(</span><span class="n">merged_dataframe</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">seasonal_periods</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mase_m</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dmod_j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+               <span class="n">nse_mod_j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h6_mhe_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h6_ahe_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h6_rmshe_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d1_p_obs_bar_p</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+               <span class="n">lm_x_obs_bar_p</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace_nan</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace_inf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remove_neg</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+               <span class="n">remove_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">to_csv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to_excel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Create a table of user selected metrics with optional seasonal analysis.</span>
+
+<span class="sd">    **Notes:** Creates a table with metrics as specified by the user. Seasonal periods can also be</span>
+<span class="sd">    specified in order to compare different seasons and how well the simulated data matches the</span>
+<span class="sd">    observed data. Has options to save the table to either a csv or an excel workbook. Also has</span>
+<span class="sd">    an option to add a column for the location of the data.</span>
+
+<span class="sd">    **Parameters**</span>
+
+<span class="sd">    merged_dataframe (required): *DataFrame*</span>
+<span class="sd">    &gt; A pandas dataframe input that has two columns of predicted data and observed data with a</span>
+<span class="sd">    datetime index.</span>
+
+<span class="sd">    metrics (required): *list*</span>
+<span class="sd">     &gt; A list of all the metrics that the user wants to calculate. The metrics abbreviations must</span>
+<span class="sd">     be used and can be found in the table of all the metrics in the documentation.</span>
+
+<span class="sd">    seasonal_periods: &quot;2D List&quot;</span>
+<span class="sd">    &gt; If give, specifies the seasonal periods that the user wants to analyze (e.g. [[&#39;06-01&#39;,</span>
+<span class="sd">    &#39;06-30&#39;], [&#39;08-12&#39;, &#39;11-23&#39;]] would analyze the dates from June 1st to June 30th and also</span>
+<span class="sd">    August 8th to November 23). Note that the entire time series is analyzed with the selected</span>
+<span class="sd">    metrics by default.</span>
+
+<span class="sd">    mase_m: *integer*</span>
+<span class="sd">    &gt; Optional parameter for the mean absolute scaled error (MASE) metric.</span>
+
+<span class="sd">    dmod_j: *integer or float*</span>
+<span class="sd">    &gt; Optional parameter for the modified index of agreement (dmod) metric.</span>
+
+<span class="sd">    nse_mod_j: *integer or float*</span>
+<span class="sd">    &gt; Optional parameter for the modified Nash Sutcliffe (nse_mod) metric.</span>
+
+<span class="sd">    h6_mhe_k: *integer or float*</span>
+<span class="sd">    &gt; Optional parameter for the H6 (MHE) metric.</span>
+
+<span class="sd">    h6_ahe_k: *integer or float*</span>
+<span class="sd">    &gt; Optional parameter for the H6 (AHE) metric</span>
+
+<span class="sd">    h6_rmshe_k: *integer or float*</span>
+<span class="sd">    &gt; Optional parameter for the H6 (RMSHE) metric</span>
+
+<span class="sd">    d1_p_obs_bar_p: *float*</span>
+<span class="sd">    &gt; Optional parameter fot the Legate McCabe Index of Agreement (d1_p).</span>
+
+<span class="sd">    lm_x_obs_bar_p: *float*</span>
+<span class="sd">    &gt; Optional parameter for the Lagate McCabe Efficiency Index (lm_index).</span>
+
+<span class="sd">    replace_nan: *float, optional*</span>
+<span class="sd">    &gt; If given, indicates which value to replace NaN values with in the two arrays. If None, when</span>
+<span class="sd">    a NaN value is found at the i-th position in the observed OR simulated array, the i-th value</span>
+<span class="sd">    of the observed and simulated array are removed before the computation.</span>
+
+<span class="sd">    replace_inf *float, optional*</span>
+<span class="sd">    &gt; If given, indicates which value to replace Inf values with in the two arrays. If None, when</span>
+<span class="sd">    an inf value is found at the i-th position in the observed OR simulated array, the i-th value</span>
+<span class="sd">    of the observed and simulated array are removed before the computation.</span>
+
+<span class="sd">    remove_neg *boolean, optional*</span>
+<span class="sd">    &gt; If true, negative numbers will be removed from the observed and simulated arrays.</span>
+
+<span class="sd">    remove_zero *boolean, optional*</span>
+<span class="sd">    &gt; If true, zeros will be removed from the observed and simulated arrays.</span>
+
+<span class="sd">    to_csv: *string*</span>
+<span class="sd">    &gt; Filepath and file name of the csv that is written (e.g. r&#39;/path/to/output_dir/file.csv&#39;).</span>
+
+<span class="sd">    to_excel: *string*</span>
+<span class="sd">    &gt; Filepath and file name of the excel workbook that is written</span>
+<span class="sd">    (e.g. r&#39;/path/to/output_dir/file.xlsx&#39;).</span>
+
+<span class="sd">    location: *string*</span>
+<span class="sd">    &gt; The name of the location that will be created as a column in the table that is created.</span>
+<span class="sd">    Useful for creating a large table with different datasets.</span>
+
+<span class="sd">    **Example**</span>
+
+<span class="sd">    ```python</span>
+
+<span class="sd">    import hydrostats as hs</span>
+<span class="sd">    import hydrostats.data as hd</span>
+
+<span class="sd">    # Defining the URLs of the datasets</span>
+<span class="sd">    sfpt_url = r&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/sfpt_data/magdalena-calamar_interim_data.csv&#39;</span>
+<span class="sd">    glofas_url = r&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/GLOFAS_Data/magdalena-calamar_ECMWF_data.csv&#39;</span>
+
+<span class="sd">    # Merging the data</span>
+<span class="sd">    merged_df = hd.merge_data(sfpt_url, glofas_url, column_names=[&#39;SFPT&#39;, &#39;GLOFAS&#39;])</span>
+
+<span class="sd">    # Printing the table</span>
+<span class="sd">    print(hs.make_table(merged_dataframe=merged_df,</span>
+<span class="sd">                        metrics=[&#39;MAE&#39;, &#39;r2&#39;, &#39;ACC&#39;, &#39;NSE&#39;, &#39;SA&#39;],</span>
+<span class="sd">                        seasonal_periods=[[&#39;01-01&#39;, &#39;03-31&#39;], [&#39;04-01&#39;, &#39;06-30&#39;], [&#39;07-01&#39;, &#39;09-30&#39;],</span>
+<span class="sd">                                          [&#39;10-01&#39;, &#39;12-31&#39;]],</span>
+<span class="sd">                        remove_neg=True, remove_zero=True, location=&#39;Magdalena&#39;))</span>
+
+<span class="sd">    # Writing the table to a csv</span>
+<span class="sd">    hs.make_table(merged_dataframe=merged_df,</span>
+<span class="sd">                        metrics=[&#39;MAE&#39;, &#39;r2&#39;, &#39;ACC&#39;, &#39;NSE&#39;, &#39;SA&#39;],</span>
+<span class="sd">                        seasonal_periods=[[&#39;01-01&#39;, &#39;03-31&#39;], [&#39;04-01&#39;, &#39;06-30&#39;], [&#39;07-01&#39;, &#39;09-30&#39;],</span>
+<span class="sd">                                          [&#39;10-01&#39;, &#39;12-31&#39;]],</span>
+<span class="sd">                        remove_neg=True, remove_zero=True, location=&#39;Magdalena&#39;,</span>
+<span class="sd">                        to_csv=&#39;magdalena_table.csv&#39;)</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Creating a list for all of the metrics for all of the seasons</span>
     <span class="n">complete_metric_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -135,16 +238,20 @@
         <span class="n">table_df_final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">to_csv</span><span class="p">,</span> <span class="n">index_label</span><span class="o">=</span><span class="s1">&#39;Datetime&#39;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="time_lag"><a class="viewcode-back" href="../../api/hydrostats.analyze.time_lag.html#hydrostats.analyze.time_lag">[docs]</a><span class="k">def</span> <span class="nf">time_lag</span><span class="p">(</span><span class="n">merged_dataframe</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">interp_freq</span><span class="o">=</span><span class="s1">&#39;6H&#39;</span><span class="p">,</span> <span class="n">interp_type</span><span class="o">=</span><span class="s1">&#39;pchip&#39;</span><span class="p">,</span> <span class="n">shift_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="n">mase_m</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-             <span class="n">dmod_j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nse_mod_j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h6_mhe_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h6_ahe_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h6_rmshe_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d1_p_obs_bar_p</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lm_x_obs_bar_p</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-             <span class="n">replace_nan</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace_inf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remove_neg</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remove_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-             <span class="n">plot_title</span><span class="o">=</span><span class="s1">&#39;Metric Values as Different Lags&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Metric Value&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Number of Lags&#39;</span><span class="p">,</span>
-             <span class="n">save_fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">station</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to_csv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to_excel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Runs a time lag analysis to check for potential timing errors in datasets. Returns a dataframe with all of the</span>
-<span class="sd">    metric values at different time lag, as well as the max and min metric value throughout the time lag as well as the</span>
-<span class="sd">    position of the max and min time lag values. See the official documentation at</span>
-<span class="sd">    https://waderoberts123.github.io/Hydrostats/ for a full explanation of all of the function arguments as well</span>
-<span class="sd">    as examples.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="time_lag"><a class="viewcode-back" href="../../api/hydrostats.analyze.time_lag.html#hydrostats.analyze.time_lag">[docs]</a><span class="k">def</span> <span class="nf">time_lag</span><span class="p">(</span><span class="n">merged_dataframe</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">interp_freq</span><span class="o">=</span><span class="s1">&#39;6H&#39;</span><span class="p">,</span> <span class="n">interp_type</span><span class="o">=</span><span class="s1">&#39;pchip&#39;</span><span class="p">,</span>
+             <span class="n">shift_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="n">mase_m</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dmod_j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nse_mod_j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h6_mhe_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+             <span class="n">h6_ahe_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h6_rmshe_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d1_p_obs_bar_p</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lm_x_obs_bar_p</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace_nan</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">replace_inf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remove_neg</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remove_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+             <span class="n">plot_title</span><span class="o">=</span><span class="s1">&#39;Metric Values as Different Lags&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Metric Value&#39;</span><span class="p">,</span>
+             <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Number of Lags&#39;</span><span class="p">,</span> <span class="n">save_fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">station</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to_csv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">to_excel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Check metric values between simulated and observed data at different time lags.</span>
+
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">metrics_list</span> <span class="o">=</span> <span class="n">metric_names</span>
     <span class="n">abbreviations</span> <span class="o">=</span> <span class="n">metric_abbr</span>
@@ -250,9 +357,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Preprocessing.html">Preprocessing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Visualization.html">hydrostats.visual Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Metrics.html">hydrostats.metrics Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Analysis.html">hydrostats.analyze Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Analysis.html">Analysis</a></li>
 </ul>
 
 <div id="searchbox" style="display: none" role="search">

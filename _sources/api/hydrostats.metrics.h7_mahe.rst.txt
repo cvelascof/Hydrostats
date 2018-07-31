@@ -1,0 +1,6 @@
+h7_mahe
+=======
+
+.. currentmodule:: hydrostats.metrics
+
+.. autofunction:: h7_mahe

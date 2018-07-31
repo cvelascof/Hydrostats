@@ -1,0 +1,6 @@
+h5_mahe
+=======
+
+.. currentmodule:: hydrostats.metrics
+
+.. autofunction:: h5_mahe
