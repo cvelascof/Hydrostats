@@ -46,6 +46,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../Visualization.html">Visualization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Metrics.html">Metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Analysis.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref_table.html">Quick Reference Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot_types.html">List of Plot Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../timezones.html">List of Timezones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matplotlib_linestyles.html">Matplotlib Linestyles Help</a></li>
 </ul>
 
   <h4>Previous topic</h4>
@@ -86,7 +90,71 @@
 <dl class="function">
 <dt id="hydrostats.visual.hist">
 <code class="descclassname">hydrostats.visual.</code><code class="descname">hist</code><span class="sig-paren">(</span><em>merged_data_df=None</em>, <em>sim_array=None</em>, <em>obs_array=None</em>, <em>num_bins=100</em>, <em>z_norm=False</em>, <em>legend=None</em>, <em>grid=False</em>, <em>title=None</em>, <em>labels=None</em>, <em>savefigure=None</em>, <em>prob_dens=False</em>, <em>figsize=(12</em>, <em>6)</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/visual.html#hist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.visual.hist" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Plots a histogram comparing simulated and observed data.</p>
+<p>The histogram plot is a function that is available for comparing the histograms of two time
+series. Data can be Z-score normalized as well as fit in a probability density function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>merged_data_df: DataFrame</strong></dt>
+<dd><p class="first last">Dataframe must contain a datetime type index and floating point type numbers in two
+columns. The left column must be simulated data and the right column must be observed data.
+If given, sim_array and obs_array must be None.</p>
+</dd>
+<dt><strong>sim_array: 1D ndarray</strong></dt>
+<dd><p class="first last">Array of simulated data. If given, merged_data_df parameter must be None and obs_array must
+be given.</p>
+</dd>
+<dt><strong>obs_array: 1D ndarray</strong></dt>
+<dd><p class="first last">Array of observed data. If given, merged_data_df parameter must be None and sim_array must
+be given.</p>
+</dd>
+<dt><strong>num_bins: int</strong></dt>
+<dd><p class="first last">Specifies the number of bins in the histogram.</p>
+</dd>
+<dt><strong>z_norm: bool</strong></dt>
+<dd><p class="first last">If True, the data will be Z-score normalized.</p>
+</dd>
+<dt><strong>legend: tuple of str</strong></dt>
+<dd><p class="first last">Tuple of length two with str inputs. Adds a Legend in the ‘best’ location determined by
+matplotlib. The entries in the tuple label the simulated and observed data
+(e.g. [‘Simulated Data’, ‘Predicted Data’]).</p>
+</dd>
+<dt><strong>grid: bool</strong></dt>
+<dd><p class="first last">If True, adds a grid to the plot.</p>
+</dd>
+<dt><strong>title: str</strong></dt>
+<dd><p class="first last">If given, sets the title of the plot.</p>
+</dd>
+<dt><strong>labels: tuple of str</strong></dt>
+<dd><p class="first last">Tuple of two string type objects to set the x-axis labels and y-axis labels, respectively.</p>
+</dd>
+<dt><strong>savefigure: str</strong></dt>
+<dd><p class="first last">Saves the plot to the specified path as a filetype specified by the user
+(eg. path/to/file.png). Available file types are in <a class="reference internal" href="../plot_types.html#plot-types"><span class="std std-ref">List of Plot Types</span></a>.</p>
+</dd>
+<dt><strong>prob_dens:</strong></dt>
+<dd></dd>
+<dt><strong>figsize: tuple of float</strong></dt>
+<dd><p class="first last">Tuple of length two that specifies the horizontal and vertical lengths of the plot in
+inches, respectively.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>None</strong></dt>
+<dd><p class="first last">The plot will be generated automatically if the savefig argument is not specified.
+Otherwise, the plot will be saved to the specified location.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </div>
 

@@ -46,6 +46,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../Visualization.html">Visualization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Metrics.html">Metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Analysis.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref_table.html">Quick Reference Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot_types.html">List of Plot Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../timezones.html">List of Timezones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matplotlib_linestyles.html">Matplotlib Linestyles Help</a></li>
 </ul>
 
   <h4>Previous topic</h4>
@@ -85,36 +89,101 @@
 <h1>plot<a class="headerlink" href="#plot" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hydrostats.visual.plot">
-<code class="descclassname">hydrostats.visual.</code><code class="descname">plot</code><span class="sig-paren">(</span><em>merged_data_df, legend=None, metrics=None, grid=False, title=None, x_season=False, labels=None, savefigure=None, linestyles=['ro', 'b^'], tight_xlim=False, fig_size=(10, 6), text_adjust=[-0.35, 0.75], plot_adjust=0.27, transparency=0.5, ebars=None, ecolor=None, markersize=2, errorevery=1, markevery=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/visual.html#plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.visual.plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a hydrograph of simulated and observed timeseries data.</p>
+<code class="descclassname">hydrostats.visual.</code><code class="descname">plot</code><span class="sig-paren">(</span><em>merged_data_df</em>, <em>legend=None</em>, <em>metrics=None</em>, <em>grid=False</em>, <em>title=None</em>, <em>x_season=False</em>, <em>labels=None</em>, <em>savefigure=None</em>, <em>linestyles=('ro'</em>, <em>'b^')</em>, <em>tight_xlim=False</em>, <em>fig_size=(10</em>, <em>6)</em>, <em>text_adjust=(-0.35</em>, <em>0.75)</em>, <em>plot_adjust=0.27</em>, <em>transparency=0.5</em>, <em>ebars=None</em>, <em>ecolor=None</em>, <em>markersize=2</em>, <em>errorevery=1</em>, <em>markevery=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/visual.html#plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.visual.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a comparison time series line plot of simulated and observed time series data.</p>
+<p>The time series plot is a function that is available for viewing two times series plotted side
+by side vs. time. Goodness of fit metrics can also be viewed on the plot to compare the two
+time series.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>merged_data_df</strong> – </li>
-<li><strong>legend</strong> – </li>
-<li><strong>metrics</strong> – </li>
-<li><strong>grid</strong> – </li>
-<li><strong>title</strong> – </li>
-<li><strong>x_season</strong> – </li>
-<li><strong>labels</strong> – </li>
-<li><strong>savefigure</strong> – </li>
-<li><strong>linestyles</strong> – </li>
-<li><strong>tight_xlim</strong> – </li>
-<li><strong>fig_size</strong> – </li>
-<li><strong>text_adjust</strong> – </li>
-<li><strong>plot_adjust</strong> – </li>
-<li><strong>transparency</strong> – </li>
-<li><strong>ebars</strong> – </li>
-<li><strong>ecolor</strong> – </li>
-<li><strong>markersize</strong> – </li>
-<li><strong>errorevery</strong> – </li>
-<li><strong>markevery</strong> – </li>
-</ul>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>merged_data_df: DataFrame</strong></dt>
+<dd><p class="first last">DataFrame must contain datetime index and floating point type numbers in the two columns.
+The left columns must be simulated data and the right column observed data.</p>
+</dd>
+<dt><strong>legend: list of str</strong></dt>
+<dd><p class="first last">Adds a Legend in the ‘best’ location determined by matplotlib. The entries in the list are
+[‘Simulated Data Label’, ‘Predicted Data Label’].</p>
+</dd>
+<dt><strong>metrics: list of str</strong></dt>
+<dd><p class="first last">Adds Metrics to the left side of the plot. Any metric from the Hydrostats library can
+be added to the plot as the abbreviation of the function. The entries must be in a list.
+(e.g. [‘ME’, ‘r2’, ‘KGE (2012)’]).</p>
+</dd>
+<dt><strong>grid: bool</strong></dt>
+<dd><p class="first last">If True, adds a grid to the plot.</p>
+</dd>
+<dt><strong>title: str</strong></dt>
+<dd><p class="first last">If given, adds a title to the plot.</p>
+</dd>
+<dt><strong>x_season: bool</strong></dt>
+<dd><p class="first last">If True, the x-axis ticks will be monthly. This is a useful feature when plotting seasonal
+time series comparisons (e.g. daily averages).</p>
+</dd>
+<dt><strong>labels: list of str</strong></dt>
+<dd><p class="first last">List of two str type inputs specifying x-axis labels and y-axis labels, respectively.</p>
+</dd>
+<dt><strong>savefigure: str</strong></dt>
+<dd><p class="first last">Saves the plot to the specified path as a filetype specified by the user
+(eg. path/to/file.png). Available file types are in <a class="reference internal" href="../plot_types.html#plot-types"><span class="std std-ref">List of Plot Types</span></a>.</p>
+</dd>
+<dt><strong>linestyles: list of str</strong></dt>
+<dd><p class="first last">List of two string type inputs thet will change the linestyle of the predicted and
+recorded data, respectively. Linestyle references can be found in
+<a class="reference internal" href="../matplotlib_linestyles.html#matplotlib-linestyles"><span class="std std-ref">Matplotlib Linestyles Help</span></a>.</p>
+</dd>
+<dt><strong>tight_xlim: bool</strong></dt>
+<dd><p class="first last">If true, will set the padding to zero for the lines in the line plot.</p>
+</dd>
+<dt><strong>fig_size: tuple of floats</strong></dt>
+<dd><p class="first last">Tuple of length two that specifies the horizontal and vertical lengths of the plot in
+inches, respectively.</p>
+</dd>
+<dt><strong>text_adjust: tuple</strong></dt>
+<dd><p class="first last">Tuple of length two with float type inputs indicating the relative position of the text
+(x-coordinate, y-coordinate) when adding metrics to the plot.</p>
+</dd>
+<dt><strong>plot_adjust: float</strong></dt>
+<dd><p class="first last">Specifies the relative position to shift the plot the the right when adding metrics to the
+plot.</p>
+</dd>
+<dt><strong>transparency: float</strong></dt>
+<dd><p class="first last">Value between 0 to 1 indicating the transparency of the two lines that are plotted and
+error bars if they are plotted, lower means more transparent.</p>
+</dd>
+<dt><strong>ebars: DataFrame</strong></dt>
+<dd><p class="first last">DataFrame must contain datetime index and two columns of data that specify the error
+of the plots, with the simulated error on the left and the observed error on the right.
+These dataframes can be created with the
+<a class="reference internal" href="hydrostats.data.daily_std_error.html"><span class="doc">daily_std_error</span></a>,
+<a class="reference internal" href="hydrostats.data.daily_std_dev.html"><span class="doc">daily_std_dev</span></a>,
+<a class="reference internal" href="hydrostats.data.monthly_std_error.html"><span class="doc">monthly_std_error</span></a>, and
+<a class="reference internal" href="hydrostats.data.monthly_std_dev.html"><span class="doc">monthly_std_dev</span></a> functions.</p>
+</dd>
+<dt><strong>ecolor: tuple of str</strong></dt>
+<dd><p class="first last">Tuple of two sting type inputs specifying the colors of the errorbars (e.g. [‘r’, ‘k’] would
+make red and black errorbars on the simulated and observed data, respectively).</p>
+</dd>
+<dt><strong>markersize: float</strong></dt>
+<dd><p class="first last">Indicates the size of the markers on the plot, if markers are used.</p>
+</dd>
+<dt><strong>errorevery: int</strong></dt>
+<dd><p class="first last">Specifies how often to put error bars on the plot.</p>
+</dd>
+<dt><strong>markevery: int</strong></dt>
+<dd><p class="first last">Specifies how often to put markers on the plot if markers are used.</p>
+</dd>
+</dl>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>None</strong></dt>
+<dd><p class="first last">The plot will be generated automatically if the savefig argument is not specified.
+Otherwise, the plot will be saved to the specified location.</p>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>

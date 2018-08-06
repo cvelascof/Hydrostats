@@ -46,6 +46,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../Visualization.html">Visualization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Metrics.html">Metrics</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Analysis.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref_table.html">Quick Reference Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot_types.html">List of Plot Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../timezones.html">List of Timezones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matplotlib_linestyles.html">Matplotlib Linestyles Help</a></li>
 </ul>
 
   <h4>Previous topic</h4>
@@ -87,89 +91,132 @@
 <dt id="hydrostats.analyze.make_table">
 <code class="descclassname">hydrostats.analyze.</code><code class="descname">make_table</code><span class="sig-paren">(</span><em>merged_dataframe</em>, <em>metrics</em>, <em>seasonal_periods=None</em>, <em>mase_m=1</em>, <em>dmod_j=1</em>, <em>nse_mod_j=1</em>, <em>h6_mhe_k=1</em>, <em>h6_ahe_k=1</em>, <em>h6_rmshe_k=1</em>, <em>d1_p_obs_bar_p=None</em>, <em>lm_x_obs_bar_p=None</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em>, <em>to_csv=None</em>, <em>to_excel=None</em>, <em>location=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/analyze.html#make_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.analyze.make_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a table of user selected metrics with optional seasonal analysis.</p>
-<p><strong>Notes:</strong> Creates a table with metrics as specified by the user. Seasonal periods can also be
+<p>Creates a table with metrics as specified by the user. Seasonal periods can also be
 specified in order to compare different seasons and how well the simulated data matches the
 observed data. Has options to save the table to either a csv or an excel workbook. Also has
 an option to add a column for the location of the data.</p>
-<p><strong>Parameters</strong></p>
-<p>merged_dataframe (required): <em>DataFrame</em>
-&gt; A pandas dataframe input that has two columns of predicted data and observed data with a
-datetime index.</p>
-<dl class="docutils">
-<dt>metrics (required): <em>list</em></dt>
-<dd>&gt; A list of all the metrics that the user wants to calculate. The metrics abbreviations must
-be used and can be found in the table of all the metrics in the documentation.</dd>
-</dl>
-<p>seasonal_periods: “2D List”
-&gt; If give, specifies the seasonal periods that the user wants to analyze (e.g. [[‘06-01’,
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>merged_dataframe: DataFrame</strong></dt>
+<dd><p class="first last">A pandas dataframe that has two columns of predicted data (Col 0) and observed data (Col 1)
+with a datetime index.</p>
+</dd>
+<dt><strong>metrics: list of str</strong></dt>
+<dd><p class="first last">A list of all the metrics that the user wants to calculate. The metrics abbreviations must
+be used and can be found in the table of all the metrics in the documentation.</p>
+</dd>
+<dt><strong>seasonal_periods: 2D list of str, optional</strong></dt>
+<dd><p class="first last">If given, specifies the seasonal periods that the user wants to analyze (e.g. [[‘06-01’,
 ‘06-30’], [‘08-12’, ‘11-23’]] would analyze the dates from June 1st to June 30th and also
 August 8th to November 23). Note that the entire time series is analyzed with the selected
 metrics by default.</p>
-<p>mase_m: <em>integer</em>
-&gt; Optional parameter for the mean absolute scaled error (MASE) metric.</p>
-<p>dmod_j: <em>integer or float</em>
-&gt; Optional parameter for the modified index of agreement (dmod) metric.</p>
-<p>nse_mod_j: <em>integer or float</em>
-&gt; Optional parameter for the modified Nash Sutcliffe (nse_mod) metric.</p>
-<p>h6_mhe_k: <em>integer or float</em>
-&gt; Optional parameter for the H6 (MHE) metric.</p>
-<p>h6_ahe_k: <em>integer or float</em>
-&gt; Optional parameter for the H6 (AHE) metric</p>
-<p>h6_rmshe_k: <em>integer or float</em>
-&gt; Optional parameter for the H6 (RMSHE) metric</p>
-<p>d1_p_obs_bar_p: <em>float</em>
-&gt; Optional parameter fot the Legate McCabe Index of Agreement (d1_p).</p>
-<p>lm_x_obs_bar_p: <em>float</em>
-&gt; Optional parameter for the Lagate McCabe Efficiency Index (lm_index).</p>
-<p>replace_nan: <em>float, optional</em>
-&gt; If given, indicates which value to replace NaN values with in the two arrays. If None, when
+</dd>
+<dt><strong>mase_m: int, Optional</strong></dt>
+<dd><p class="first last">Parameter for the mean absolute scaled error (MASE) metric.</p>
+</dd>
+<dt><strong>dmod_j: int or float, optional</strong></dt>
+<dd><p class="first last">Parameter for the modified index of agreement (dmod) metric.</p>
+</dd>
+<dt><strong>nse_mod_j: int or float, optional</strong></dt>
+<dd><p class="first last">Parameter for the modified Nash-Sutcliffe (nse_mod) metric.</p>
+</dd>
+<dt><strong>h6_mhe_k: int or float, optional</strong></dt>
+<dd><p class="first last">Parameter for the H6 (MHE) metric.</p>
+</dd>
+<dt><strong>h6_ahe_k: int or float, optional</strong></dt>
+<dd><p class="first last">Parameter for the H6 (AHE) metric</p>
+</dd>
+<dt><strong>h6_rmshe_k: int or float, optional</strong></dt>
+<dd><p class="first last">Parameter for the H6 (RMSHE) metric</p>
+</dd>
+<dt><strong>d1_p_obs_bar_p: float, optional</strong></dt>
+<dd><p class="first last">Parameter fot the Legate McCabe Index of Agreement (d1_p).</p>
+</dd>
+<dt><strong>lm_x_obs_bar_p: float, optional</strong></dt>
+<dd><p class="first last">Parameter for the Lagate McCabe Efficiency Index (lm_index).</p>
+</dd>
+<dt><strong>replace_nan: float, optional</strong></dt>
+<dd><p class="first last">If given, indicates which value to replace NaN values with in the two arrays. If None, when
 a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
 of the observed and simulated array are removed before the computation.</p>
-<p>replace_inf <em>float, optional</em>
-&gt; If given, indicates which value to replace Inf values with in the two arrays. If None, when
-an inf value is found at the i-th position in the observed OR simulated array, the i-th value
-of the observed and simulated array are removed before the computation.</p>
-<p>remove_neg <em>boolean, optional</em>
-&gt; If true, negative numbers will be removed from the observed and simulated arrays.</p>
-<p>remove_zero <em>boolean, optional</em>
-&gt; If true, zeros will be removed from the observed and simulated arrays.</p>
-<p>to_csv: <em>string</em>
-&gt; Filepath and file name of the csv that is written (e.g. r’/path/to/output_dir/file.csv’).</p>
-<p>to_excel: <em>string</em>
-&gt; Filepath and file name of the excel workbook that is written
+</dd>
+<dt><strong>replace_inf: float, optional</strong></dt>
+<dd><p class="first last">If given, indicates which value to replace Inf values with in the two arrays. If None, when
+an inf value is found at the i-th position in the observed OR simulated array, the i-th
+value of the observed and simulated array are removed before the computation.</p>
+</dd>
+<dt><strong>remove_neg: boolean, optional</strong></dt>
+<dd><p class="first last">If True, when a negative value is found at the i-th position in the observed OR simulated
+array, the i-th value of the observed AND simulated array are removed before the
+computation.</p>
+</dd>
+<dt><strong>remove_zero: boolean, optional</strong></dt>
+<dd><p class="first last">If true, when a zero value is found at the i-th position in the observed OR simulated
+array, the i-th value of the observed AND simulated array are removed before the
+computation.</p>
+</dd>
+<dt><strong>to_csv: str</strong></dt>
+<dd><p class="first last">Filepath and file name of the csv that is written (e.g. r’/path/to/output_dir/file.csv’).</p>
+</dd>
+<dt><strong>to_excel: str</strong></dt>
+<dd><p class="first last">Filepath and file name of the excel workbook that is written
 (e.g. r’/path/to/output_dir/file.xlsx’).</p>
-<p>location: <em>string</em>
-&gt; The name of the location that will be created as a column in the table that is created.
+</dd>
+<dt><strong>location: str</strong></dt>
+<dd><p class="first last">The name of the location that will be created as a column in the table that is created.
 Useful for creating a large table with different datasets.</p>
-<p><strong>Example</strong></p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python</p>
-<p>import hydrostats as hs
-import hydrostats.data as hd</p>
-<p># Defining the URLs of the datasets
-sfpt_url = r’<a class="reference external" href="https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/sfpt_data/magdalena-calamar_interim_data.csv">https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/sfpt_data/magdalena-calamar_interim_data.csv</a>’
-glofas_url = r’<a class="reference external" href="https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/GLOFAS_Data/magdalena-calamar_ECMWF_data.csv">https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/GLOFAS_Data/magdalena-calamar_ECMWF_data.csv</a>’</p>
-<p># Merging the data
-merged_df = hd.merge_data(sfpt_url, glofas_url, column_names=[‘SFPT’, ‘GLOFAS’])</p>
-<p># Printing the table
-print(hs.make_table(merged_dataframe=merged_df,</p>
-<blockquote>
-<div><p>metrics=[‘MAE’, ‘r2’, ‘ACC’, ‘NSE’, ‘SA’],
-seasonal_periods=[[‘01-01’, ‘03-31’], [‘04-01’, ‘06-30’], [‘07-01’, ‘09-30’],</p>
-<blockquote>
-<div>[‘10-01’, ‘12-31’]],</div></blockquote>
-<p>remove_neg=True, remove_zero=True, location=’Magdalena’))</p>
-</div></blockquote>
-<p># Writing the table to a csv
-hs.make_table(merged_dataframe=merged_df,</p>
-<blockquote>
-<div><p>metrics=[‘MAE’, ‘r2’, ‘ACC’, ‘NSE’, ‘SA’],
-seasonal_periods=[[‘01-01’, ‘03-31’], [‘04-01’, ‘06-30’], [‘07-01’, ‘09-30’],</p>
-<blockquote>
-<div>[‘10-01’, ‘12-31’]],</div></blockquote>
-<p>remove_neg=True, remove_zero=True, location=’Magdalena’,
-to_csv=’magdalena_table.csv’)</p>
-</div></blockquote>
-<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>DataFrame</strong></dt>
+<dd><p class="first last">Dataframe with rows containing the metric values at the different time ranges, and columns
+containing the metrics specified.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>First we need to get some data. The data here is pulled from the Streamflow Predication Tool
+model and the ECMWF forecasting model. We are comparing the two models in this example.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats</span> <span class="k">as</span> <span class="nn">hs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats.data</span> <span class="k">as</span> <span class="nn">hd</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Defining the URLs of the datasets</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sfpt_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/sfpt_data/magdalena-calamar_interim_data.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glofas_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/GLOFAS_Data/magdalena-calamar_ECMWF_data.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Merging the data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">merge_data</span><span class="p">(</span><span class="n">sfpt_url</span><span class="p">,</span> <span class="n">glofas_url</span><span class="p">,</span> <span class="n">column_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SFPT&#39;</span><span class="p">,</span> <span class="s1">&#39;GLOFAS&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Here we make a table and print the results</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">make_table</span><span class="p">(</span><span class="n">merged_dataframe</span><span class="o">=</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MAE&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;NSE&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>                      <span class="n">seasonal_periods</span><span class="o">=</span><span class="p">[[</span><span class="s1">&#39;01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;03-31&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;04-01&#39;</span><span class="p">,</span> <span class="s1">&#39;06-30&#39;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>                                        <span class="p">[</span><span class="s1">&#39;07-01&#39;</span><span class="p">,</span> <span class="s1">&#39;09-30&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;10-01&#39;</span><span class="p">,</span> <span class="s1">&#39;12-31&#39;</span><span class="p">]],</span>
+<span class="gp">&gt;&gt;&gt; </span>                      <span class="n">remove_neg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_zero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;Magdalena&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">table</span>
+<span class="go">                         Location          MAE        r2       NSE  KGE (2012)</span>
+<span class="go">Full Time Series        Magdalena  1157.669988  0.907503  0.873684    0.872871</span>
+<span class="go">January-01:March-31     Magdalena   631.984177  0.887249  0.861163    0.858187</span>
+<span class="go">April-01:June-30        Magdalena  1394.640050  0.882599  0.813737    0.876890</span>
+<span class="go">July-01:September-30    Magdalena  1188.542871  0.884249  0.829492    0.831188</span>
+<span class="go">October-01:December-31  Magdalena  1410.852917  0.863800  0.793927    0.791257</span>
+</pre></div>
+</div>
+<p>We can also write the table to a CSV or Excel worksheet.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hs</span><span class="o">.</span><span class="n">make_table</span><span class="p">(</span><span class="n">merged_dataframe</span><span class="o">=</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MAE&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;NSE&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>              <span class="n">seasonal_periods</span><span class="o">=</span><span class="p">[[</span><span class="s1">&#39;01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;03-31&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;04-01&#39;</span><span class="p">,</span> <span class="s1">&#39;06-30&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;07-01&#39;</span><span class="p">,</span> <span class="s1">&#39;09-30&#39;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>                                <span class="p">[</span><span class="s1">&#39;10-01&#39;</span><span class="p">,</span> <span class="s1">&#39;12-31&#39;</span><span class="p">]],</span>
+<span class="gp">&gt;&gt;&gt; </span>              <span class="n">remove_neg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_zero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;Magdalena&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>              <span class="n">to_csv</span><span class="o">=</span><span class="s1">&#39;magdalena_table.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>

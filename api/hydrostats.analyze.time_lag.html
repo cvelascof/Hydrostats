@@ -15,6 +15,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quick Reference Table" href="../ref_table.html" />
     <link rel="prev" title="make_table" href="hydrostats.analyze.make_table.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -26,6 +27,9 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="../ref_table.html" title="Quick Reference Table"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="hydrostats.analyze.make_table.html" title="make_table"
              accesskey="P">previous</a> |</li>
@@ -42,11 +46,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../Visualization.html">Visualization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Metrics.html">Metrics</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Analysis.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref_table.html">Quick Reference Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot_types.html">List of Plot Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../timezones.html">List of Timezones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matplotlib_linestyles.html">Matplotlib Linestyles Help</a></li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="hydrostats.analyze.make_table.html"
                         title="previous chapter">make_table</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../ref_table.html"
+                        title="next chapter">Quick Reference Table</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -78,8 +89,166 @@
 <h1>time_lag<a class="headerlink" href="#time-lag" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hydrostats.analyze.time_lag">
-<code class="descclassname">hydrostats.analyze.</code><code class="descname">time_lag</code><span class="sig-paren">(</span><em>merged_dataframe, metrics, interp_freq='6H', interp_type='pchip', shift_range=[-30, 30], mase_m=1, dmod_j=1, nse_mod_j=1, h6_mhe_k=1, h6_ahe_k=1, h6_rmshe_k=1, d1_p_obs_bar_p=None, lm_x_obs_bar_p=None, replace_nan=None, replace_inf=None, remove_neg=False, remove_zero=False, plot_title='Metric Values as Different Lags', ylabel='Metric Value', xlabel='Number of Lags', save_fig=None, figsize=(10, 6), station=None, to_csv=None, to_excel=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/analyze.html#time_lag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.analyze.time_lag" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">hydrostats.analyze.</code><code class="descname">time_lag</code><span class="sig-paren">(</span><em>merged_dataframe</em>, <em>metrics</em>, <em>interp_freq='6H'</em>, <em>interp_type='pchip'</em>, <em>shift_range=(-30</em>, <em>30)</em>, <em>mase_m=1</em>, <em>dmod_j=1</em>, <em>nse_mod_j=1</em>, <em>h6_mhe_k=1</em>, <em>h6_ahe_k=1</em>, <em>h6_rmshe_k=1</em>, <em>d1_p_obs_bar_p=None</em>, <em>lm_x_obs_bar_p=None</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em>, <em>plot=False</em>, <em>plot_title='Metric Values as Different Lags'</em>, <em>ylabel='Metric Value'</em>, <em>xlabel='Number of Lags'</em>, <em>save_fig=None</em>, <em>figsize=(10</em>, <em>6)</em>, <em>station=None</em>, <em>to_csv=None</em>, <em>to_excel=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/analyze.html#time_lag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.analyze.time_lag" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check metric values between simulated and observed data at different time lags.</p>
+<p>Runs a time lag analysis to check for potential timing errors in datasets. Also can create a
+plot using matplotlib of the metric values at different shifts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>merged_dataframe: DataFrame</strong></dt>
+<dd><p class="first last">A pandas dataframe that has two columns of predicted data (Col 0) and observed data (Col 1)
+with a datetime index.</p>
+</dd>
+<dt><strong>metrics: list of str</strong></dt>
+<dd><p class="first last">Metric abbreviations that the user would like to use in their lag analysis.</p>
+</dd>
+<dt><strong>interp_freq: str, optional</strong></dt>
+<dd><p class="first last">Frequency of the interpolation for both the simulated and observed time series.</p>
+</dd>
+<dt><strong>interp_type: str, optional</strong></dt>
+<dd><p class="first last">Type of interpolation. Options are ‘linear’, ‘pchip’, or ‘cubic’.</p>
+</dd>
+<dt><strong>shift_range: tuple of 2 floats, optional</strong></dt>
+<dd><p class="first last">If given, specifies the range of the lag shifts. For example, if (-10, 10) was given, the
+function would shift the simulated array for all of the range between -10 and 10.</p>
+</dd>
+<dt><strong>mase_m: int, Optional</strong></dt>
+<dd><p class="first last">Parameter for the mean absolute scaled error (MASE) metric.</p>
+</dd>
+<dt><strong>dmod_j: int or float, optional</strong></dt>
+<dd><p class="first last">Parameter for the modified index of agreement (dmod) metric.</p>
+</dd>
+<dt><strong>nse_mod_j: int or float, optional</strong></dt>
+<dd><p class="first last">Parameter for the modified Nash-Sutcliffe (nse_mod) metric.</p>
+</dd>
+<dt><strong>h6_mhe_k: int or float, optional</strong></dt>
+<dd><p class="first last">Parameter for the H6 (MHE) metric.</p>
+</dd>
+<dt><strong>h6_ahe_k: int or float, optional</strong></dt>
+<dd><p class="first last">Parameter for the H6 (AHE) metric</p>
+</dd>
+<dt><strong>h6_rmshe_k: int or float, optional</strong></dt>
+<dd><p class="first last">Parameter for the H6 (RMSHE) metric</p>
+</dd>
+<dt><strong>d1_p_obs_bar_p: float, optional</strong></dt>
+<dd><p class="first last">Parameter fot the Legate McCabe Index of Agreement (d1_p).</p>
+</dd>
+<dt><strong>lm_x_obs_bar_p: float, optional</strong></dt>
+<dd><p class="first last">Parameter for the Lagate McCabe Efficiency Index (lm_index).</p>
+</dd>
+<dt><strong>replace_nan: float, optional</strong></dt>
+<dd><p class="first last">If given, indicates which value to replace NaN values with in the two arrays. If None, when
+a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
+of the observed and simulated array are removed before the computation.</p>
+</dd>
+<dt><strong>replace_inf: float, optional</strong></dt>
+<dd><p class="first last">If given, indicates which value to replace Inf values with in the two arrays. If None, when
+an inf value is found at the i-th position in the observed OR simulated array, the i-th
+value of the observed and simulated array are removed before the computation.</p>
+</dd>
+<dt><strong>remove_neg: boolean, optional</strong></dt>
+<dd><p class="first last">If True, when a negative value is found at the i-th position in the observed OR simulated
+array, the i-th value of the observed AND simulated array are removed before the
+computation.</p>
+</dd>
+<dt><strong>remove_zero: boolean, optional</strong></dt>
+<dd><p class="first last">If true, when a zero value is found at the i-th position in the observed OR simulated
+array, the i-th value of the observed AND simulated array are removed before the
+computation.</p>
+</dd>
+<dt><strong>plot: bool, optional</strong></dt>
+<dd><p class="first last">If True, a plot will be created that visualizes the different error metrics at the
+different time lags.</p>
+</dd>
+<dt><strong>plot_title: str, optional</strong></dt>
+<dd><p class="first last">If the plot parameter is true, this parameter will set the title of the plot.</p>
+</dd>
+<dt><strong>ylabel: str, optional</strong></dt>
+<dd><p class="first last">If the plot parameter is true, this parameter will set the y axis label of the plot.</p>
+</dd>
+<dt><strong>xlabel: str, optional</strong></dt>
+<dd><p class="first last">if the plot parameter is true, this parameter will set the x axis label of the plot.</p>
+</dd>
+<dt><strong>save_fig: str, optional</strong></dt>
+<dd><p class="first last">If given, will save the matplotlib plot to the specified directory with the specified file
+name (e.g. /path/to/plot.png). A list of all available types of figures is given in
+<a class="reference internal" href="../plot_types.html#plot-types"><span class="std std-ref">List of Plot Types</span></a>.</p>
+</dd>
+<dt><strong>figsize: tuple of length 2</strong></dt>
+<dd><p class="first last">Tuple that specifies the horizontal and vertical lengths of the plot, in inches.</p>
+</dd>
+<dt><strong>station: str</strong></dt>
+<dd><p class="first last">The station of analysis. Includes the station in the table if given.</p>
+</dd>
+<dt><strong>to_csv: str</strong></dt>
+<dd><p class="first last">Filepath and file name of the csv that is written (e.g. r’/path/to/output_dir/file.csv’).</p>
+</dd>
+<dt><strong>to_excel: str</strong></dt>
+<dd><p class="first last">Filepath and file name of the excel workbook that is written
+(e.g. r’/path/to/output_dir/file.xlsx’).</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>Tuple of DataFrames</strong></dt>
+<dd><p class="first last">The first DataFrame contains all of the metric values at different time lags, while the 
+second dataframe contains the maximum and minimum metric values throughout the time lag, 
+and the index of the maximum and minimum time lag values.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Using data from the Streamflow prediction tool RAPID model and the ECMWF model, we can conpare
+the two at different time lags</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats</span> <span class="k">as</span> <span class="nn">hs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats.data</span> <span class="k">as</span> <span class="nn">hd</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Defining the URLs of the datasets</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sfpt_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/sfpt_data/magdalena-calamar_interim_data.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glofas_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/GLOFAS_Data/magdalena-calamar_ECMWF_data.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Merging the data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">merge_data</span><span class="p">(</span><span class="n">sfpt_url</span><span class="p">,</span> <span class="n">glofas_url</span><span class="p">,</span> <span class="n">column_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SFPT&#39;</span><span class="p">,</span> <span class="s1">&#39;GLOFAS&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>There are two dataframes that are returned as part of the analysis.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Running the lag analysis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time_lag_df</span><span class="p">,</span> <span class="n">summary_df</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">time_lag</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> 
+<span class="gp">&gt;&gt;&gt; </span>                                      <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ME&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">,</span> <span class="s1">&#39;NSE&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time_lag_df</span>
+<span class="go">                  r2         RMSE  KGE (2012)        dr</span>
+<span class="go">Lag Number</span>
+<span class="go">-30         0.646193  3142.795474    0.775328  0.691058</span>
+<span class="go">-29         0.656472  3093.387478    0.780866  0.696401</span>
+<span class="go">-28         0.666937  3042.665168    0.786412  0.701858</span>
+<span class="go">-27         0.677580  2990.611706    0.791957  0.707464</span>
+<span class="go">-26         0.688392  2937.216405    0.797488  0.713215</span>
+<span class="gp">... </span>             <span class="o">...</span>          <span class="o">...</span>         <span class="o">...</span>       <span class="o">...</span>
+<span class="go"> 26         0.715202  2802.314966    0.810747  0.746523</span>
+<span class="go"> 27         0.707765  2840.121175    0.807136  0.742619</span>
+<span class="go"> 28         0.700400  2877.262117    0.803508  0.738752</span>
+<span class="go"> 29         0.693112  2913.738136    0.799870  0.734911</span>
+<span class="go"> 30         0.685907  2949.540402    0.796226  0.731107</span>
+<span class="go"> &gt;&gt;&gt; summary_df</span>
+<span class="go">                     Max  Max Lag Number          Min  Min Lag Number</span>
+<span class="go">r2             0.891854            -2.0     0.646193           -30.0</span>
+<span class="go">RMSE        3142.795474           -30.0  1754.455598            -2.0</span>
+<span class="go">KGE (2012)     0.877116            -2.0     0.775328           -30.0</span>
+<span class="go">dr             0.840604             0.0     0.691058           -30.0</span>
+</pre></div>
+</div>
+<p>A plot can be created that visualizes the different metrics throughout the time lags. It can be
+saved using the savefig parameter as well if desired.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hs</span><span class="o">.</span><span class="n">time_lag</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">,</span> <span class="s1">&#39;dr&#39;</span><span class="p">],</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/lag_plot1.png" src="../_images/lag_plot1.png" />
 </dd></dl>
 
 </div>
@@ -99,6 +268,9 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="../ref_table.html" title="Quick Reference Table"
+             >next</a> |</li>
         <li class="right" >
           <a href="hydrostats.analyze.make_table.html" title="make_table"
              >previous</a> |</li>

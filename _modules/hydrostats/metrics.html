@@ -38,6 +38,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Visualization.html">Visualization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Metrics.html">Metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Analysis.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ref_table.html">Quick Reference Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plot_types.html">List of Plot Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../timezones.html">List of Timezones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../matplotlib_linestyles.html">Matplotlib Linestyles Help</a></li>
 </ul>
 
 <div id="searchbox" style="display: none" role="search">
@@ -5828,16 +5832,22 @@
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="k">pass</span>
     <span class="c1"># &gt;&gt;&gt; Creating a table of all the metrics</span>
-    <span class="c1"># import pypandoc</span>
-    <span class="c1">#</span>
-    <span class="c1"># mkd_text = &quot;| Full Metric Name | Abbreviation | Function Name |\n| :--------------- | &quot; \</span>
-    <span class="c1">#            &quot;:----------- | :------------ |\n&quot;</span>
-    <span class="c1"># for i, j, k in zip(metric_names, metric_abbr, __all__):</span>
-    <span class="c1">#     mkd_text += &quot;|{}|{}|{}|\n&quot;.format(i, j, k)</span>
-    <span class="c1">#</span>
-    <span class="c1"># text = pypandoc.convert_text(mkd_text, &#39;rst&#39;, format=&#39;markdown&#39;)</span>
-    <span class="c1">#</span>
-    <span class="c1"># print(text)</span>
+    <span class="kn">import</span> <span class="nn">pypandoc</span>
+
+    <span class="n">mkd_text</span> <span class="o">=</span> <span class="s2">&quot;| Full Metric Name | Abbreviation | Function Name |</span><span class="se">\n</span><span class="s2">| :--------------- | &quot;</span> \
+               <span class="s2">&quot;:----------- | :------------ |</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">metric_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">metric_names</span><span class="p">,</span> <span class="n">metric_abbr</span><span class="p">,</span> <span class="n">__all__</span><span class="p">]</span>
+    <span class="n">metric_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">metric_data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="c1"># Sorting in alphabetical order</span>
+    <span class="n">metric_array</span> <span class="o">=</span> <span class="n">metric_array</span><span class="p">[</span><span class="n">metric_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">metric_array</span><span class="p">:</span>
+        <span class="n">mkd_text</span> <span class="o">+=</span> <span class="s2">&quot;|</span><span class="si">{}</span><span class="s2">|</span><span class="si">{}</span><span class="s2">|</span><span class="si">{}</span><span class="s2">|</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="n">text</span> <span class="o">=</span> <span class="n">pypandoc</span><span class="o">.</span><span class="n">convert_text</span><span class="p">(</span><span class="n">mkd_text</span><span class="p">,</span> <span class="s1">&#39;rst&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;markdown&#39;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
 
     <span class="c1"># &gt;&gt;&gt; Testing Metrics</span>
     <span class="c1"># import pandas as pd</span>
