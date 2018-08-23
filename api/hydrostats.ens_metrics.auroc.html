@@ -1,0 +1,210 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>auroc &#8212; hydrostats 0.65 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Analysis" href="../Analysis.html" />
+    <link rel="prev" title="ens_brier" href="hydrostats.ens_metrics.ens_brier.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../Analysis.html" title="Analysis"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="hydrostats.ens_metrics.ens_brier.html" title="ens_brier"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../ens_metrics.html" accesskey="U">Metrics of Ensamble Forecast Skill</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Preprocessing.html">Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Metrics.html">Metrics of Hydrological Skill</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ens_metrics.html">Metrics of Ensamble Forecast Skill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref_table.html">Quick Reference Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot_types.html">List of Plot Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../timezones.html">List of Timezones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matplotlib_linestyles.html">Matplotlib Linestyles Help</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="hydrostats.ens_metrics.ens_brier.html"
+                        title="previous chapter">ens_brier</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../Analysis.html"
+                        title="next chapter">Analysis</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/hydrostats.ens_metrics.auroc.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="auroc">
+<h1>auroc<a class="headerlink" href="#auroc" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="hydrostats.ens_metrics.auroc">
+<code class="descclassname">hydrostats.ens_metrics.</code><code class="descname">auroc</code><span class="sig-paren">(</span><em>fcst_ens=None</em>, <em>obs=None</em>, <em>threshold=None</em>, <em>fcst_ens_bin=None</em>, <em>obs_bin=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/ens_metrics.html#auroc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.ens_metrics.auroc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates Area Under the Relative Operating Characteristic curve (AUROC)
+for a forecast and its verifying binary observation, and estimates the variance of the AUROC</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>obs: 1D ndarray</strong></dt>
+<dd><p class="first last">Array of observations for each start date.</p>
+</dd>
+<dt><strong>fcst_ens: 2D ndarray</strong></dt>
+<dd><p class="first last">Array of ensemble forecast of dimension n x M, where n = number of start dates and
+M = number of ensemble members.</p>
+</dd>
+<dt><strong>threshold: float</strong></dt>
+<dd><p class="first last">The threshold for an event (e.g. if the event is a 100 year flood, the streamflow value
+that a 100 year flood would have to exceed.</p>
+</dd>
+<dt><strong>fcst_ens_bin: 1D ndarray</strong></dt>
+<dd><p class="first last">Binary array of observations for each start date. 1 for an event and 0 for a non-event.</p>
+</dd>
+<dt><strong>obs_bin: 2D ndarray</strong></dt>
+<dd><p class="first last">Binary array of ensemble forecast of dimension n x M, where n = number of start dates and
+M = number of ensemble members. 1 for an event and 0 for a non-event.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>1D ndarray</strong></dt>
+<dd><p class="first last">An array of two elements, the AUROC and the estimated variance, respectively.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p><strong>NaN and inf treatment:</strong> If any value in obs or fcst_ens is NaN or inf, then the
+corresponding row in both fcst_ens (for all ensemble members) and in obs will be deleted. A
+warning will be shown that informs the user of the rows that have been removed.</p>
+<p class="rubric">References</p>
+<ul class="simple">
+<li>DeLong et al (1988): Comparing the Areas under Two or More Correlated Receiver Operating
+Characteristic Curves: A Nonparametric Approach. Biometrics. doi: 10.2307/2531595</li>
+<li>Sun and Xu (2014): Fast Implementation of DeLong’s Algorithm for Comparing the Areas Under
+Correlated Receiver Operating Characteristic Curves. IEEE Sign Proc Let 21(11).
+doi: 10.1109/LSP.2014.2337313</li>
+<li>Stefan Siegert (2017). SpecsVerification: Forecast Verification Routines for Ensemble
+Forecasts of Weather and Climate. R package version 0.5-2.
+<a class="reference external" href="https://CRAN.R-project.org/package=SpecsVerification">https://CRAN.R-project.org/package=SpecsVerification</a></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats.ens_metrics</span> <span class="k">as</span> <span class="nn">em</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">3849590438</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Creating an observed 1D array and an ensemble 2D array with all random numbers</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ens_array_random</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">52</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obs_array_random</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>Creating an observed 1D array and an ensemble 2D array with noise.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">52</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observed_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ensemble_array_noise</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">52</span><span class="p">))</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">observed_array</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">noise</span>
+</pre></div>
+</div>
+<p>Calculating the ROC with random values. Note that the area under the curve is close to 0.5
+because the data is random.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">em</span><span class="o">.</span><span class="n">auroc</span><span class="p">(</span><span class="n">obs</span><span class="o">=</span><span class="n">obs_array_random</span><span class="p">,</span> <span class="n">fcst_ens</span><span class="o">=</span><span class="n">ens_array_random</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">175</span><span class="p">))</span>
+<span class="go">[0.45560516 0.06406262]</span>
+</pre></div>
+</div>
+<p>Calculating the ROC with noise in the forecast values. Note that the ROC value is high because
+the forecast is more accurate.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">em</span><span class="o">.</span><span class="n">auroc</span><span class="p">(</span><span class="n">obs</span><span class="o">=</span><span class="n">observed_array</span><span class="p">,</span> <span class="n">fcst_ens</span><span class="o">=</span><span class="n">ensemble_array_noise</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="go">[0.99137931 0.00566026]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../Analysis.html" title="Analysis"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="hydrostats.ens_metrics.ens_brier.html" title="ens_brier"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../ens_metrics.html" >Metrics of Ensamble Forecast Skill</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Wade Roberts.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+    </div>
+  </body>
+</html>

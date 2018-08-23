@@ -44,7 +44,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Visualization.html">Visualization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Metrics.html">Metrics of Hydrological Skill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ens_metrics.html">Metrics of Ensamble Forecast Skill</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Analysis.html">Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref_table.html">Quick Reference Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plot_types.html">List of Plot Types</a></li>
@@ -185,7 +186,7 @@ containing the metrics specified.</p>
 <p class="rubric">Examples</p>
 <p>First we need to get some data. The data here is pulled from the Streamflow Predication Tool
 model and the ECMWF forecasting model. We are comparing the two models in this example.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats</span> <span class="k">as</span> <span class="nn">hs</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats.analyze</span> <span class="k">as</span> <span class="nn">ha</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats.data</span> <span class="k">as</span> <span class="nn">hd</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Defining the URLs of the datasets</span>
@@ -196,25 +197,30 @@ model and the ECMWF forecasting model. We are comparing the two models in this e
 </pre></div>
 </div>
 <p>Here we make a table and print the results</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">make_table</span><span class="p">(</span><span class="n">merged_dataframe</span><span class="o">=</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MAE&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;NSE&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">],</span>
-<span class="gp">&gt;&gt;&gt; </span>                      <span class="n">seasonal_periods</span><span class="o">=</span><span class="p">[[</span><span class="s1">&#39;01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;03-31&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;04-01&#39;</span><span class="p">,</span> <span class="s1">&#39;06-30&#39;</span><span class="p">],</span>
-<span class="gp">&gt;&gt;&gt; </span>                                        <span class="p">[</span><span class="s1">&#39;07-01&#39;</span><span class="p">,</span> <span class="s1">&#39;09-30&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;10-01&#39;</span><span class="p">,</span> <span class="s1">&#39;12-31&#39;</span><span class="p">]],</span>
-<span class="gp">&gt;&gt;&gt; </span>                      <span class="n">remove_neg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_zero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;Magdalena&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MAE&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;NSE&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">seasonal</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;03-31&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;04-01&#39;</span><span class="p">,</span> <span class="s1">&#39;06-30&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;07-01&#39;</span><span class="p">,</span> <span class="s1">&#39;09-30&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;10-01&#39;</span><span class="p">,</span> <span class="s1">&#39;12-31&#39;</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="n">ha</span><span class="o">.</span><span class="n">make_table</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">my_metrics</span><span class="p">,</span> <span class="n">seasonal</span><span class="p">,</span> <span class="n">remove_neg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_zero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;Magdalena&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">table</span>
-<span class="go">                         Location          MAE        r2       NSE  KGE (2012)</span>
-<span class="go">Full Time Series        Magdalena  1157.669988  0.907503  0.873684    0.872871</span>
-<span class="go">January-01:March-31     Magdalena   631.984177  0.887249  0.861163    0.858187</span>
-<span class="go">April-01:June-30        Magdalena  1394.640050  0.882599  0.813737    0.876890</span>
-<span class="go">July-01:September-30    Magdalena  1188.542871  0.884249  0.829492    0.831188</span>
-<span class="go">October-01:December-31  Magdalena  1410.852917  0.863800  0.793927    0.791257</span>
+<span class="go">                         Location          MAE     ...           NSE  KGE (2012)</span>
+<span class="go">Full Time Series        Magdalena  1157.669988     ...      0.873684    0.872871</span>
+<span class="go">January-01:March-31     Magdalena   631.984177     ...      0.861163    0.858187</span>
+<span class="go">April-01:June-30        Magdalena  1394.640050     ...      0.813737    0.876890</span>
+<span class="go">July-01:September-30    Magdalena  1188.542871     ...      0.829492    0.831188</span>
+<span class="go">October-01:December-31  Magdalena  1410.852917     ...      0.793927    0.791257</span>
+
+<span class="go">[5 rows x 5 columns]</span>
 </pre></div>
 </div>
 <p>We can also write the table to a CSV or Excel worksheet.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hs</span><span class="o">.</span><span class="n">make_table</span><span class="p">(</span><span class="n">merged_dataframe</span><span class="o">=</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MAE&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;NSE&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">],</span>
-<span class="gp">&gt;&gt;&gt; </span>              <span class="n">seasonal_periods</span><span class="o">=</span><span class="p">[[</span><span class="s1">&#39;01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;03-31&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;04-01&#39;</span><span class="p">,</span> <span class="s1">&#39;06-30&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;07-01&#39;</span><span class="p">,</span> <span class="s1">&#39;09-30&#39;</span><span class="p">],</span>
-<span class="gp">&gt;&gt;&gt; </span>                                <span class="p">[</span><span class="s1">&#39;10-01&#39;</span><span class="p">,</span> <span class="s1">&#39;12-31&#39;</span><span class="p">]],</span>
-<span class="gp">&gt;&gt;&gt; </span>              <span class="n">remove_neg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_zero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;Magdalena&#39;</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>              <span class="n">to_csv</span><span class="o">=</span><span class="s1">&#39;magdalena_table.csv&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ha</span><span class="o">.</span><span class="n">make_table</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">my_metrics</span><span class="p">,</span> <span class="n">seasonal</span><span class="p">,</span> <span class="n">remove_neg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_zero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;Magdalena&#39;</span><span class="p">,</span> <span class="n">to_csv</span><span class="o">=</span><span class="s1">&#39;magdalena_table.csv&#39;</span><span class="p">)</span>
+<span class="go">                         Location          MAE     ...           NSE  KGE (2012)</span>
+<span class="go">Full Time Series        Magdalena  1157.669988     ...      0.873684    0.872871</span>
+<span class="go">January-01:March-31     Magdalena   631.984177     ...      0.861163    0.858187</span>
+<span class="go">April-01:June-30        Magdalena  1394.640050     ...      0.813737    0.876890</span>
+<span class="go">July-01:September-30    Magdalena  1188.542871     ...      0.829492    0.831188</span>
+<span class="go">October-01:December-31  Magdalena  1410.852917     ...      0.793927    0.791257</span>
+
+<span class="go">[5 rows x 5 columns]</span>
 </pre></div>
 </div>
 </dd></dl>

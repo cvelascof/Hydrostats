@@ -14,9 +14,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="spearman_r" href="hydrostats.metrics.spearman_r.html" />
-    <link rel="prev" title="r_squared" href="hydrostats.metrics.r_squared.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,24 +25,18 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="hydrostats.metrics.spearman_r.html" title="spearman_r"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="hydrostats.metrics.r_squared.html" title="r_squared"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../Metrics.html" accesskey="U">Metrics</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h3><a href="../index.html">Table Of Contents</a></h3>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Visualization.html">Visualization</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Metrics.html">Metrics of Hydrological Skill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ens_metrics.html">Metrics of Ensamble Forecast Skill</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Analysis.html">Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref_table.html">Quick Reference Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plot_types.html">List of Plot Types</a></li>
@@ -52,12 +44,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../matplotlib_linestyles.html">Matplotlib Linestyles Help</a></li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="hydrostats.metrics.r_squared.html"
-                        title="previous chapter">r_squared</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="hydrostats.metrics.spearman_r.html"
-                        title="next chapter">spearman_r</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -94,8 +80,7 @@
 <img alt="../_images/R_pearson.png" src="../_images/R_pearson.png" />
 <p><strong>Range:</strong> -1 ≤ R (Pearson) ≤ 1. 1 indicates perfect postive correlation, 0 indicates
 complete randomness, -1 indicate perfect negative correlation.</p>
-<p><strong>Notes:</strong> The pearson r coefficient measures linear correlation. It can be affected negatively
-by outliers.</p>
+<p><strong>Notes:</strong> The pearson r coefficient measures linear correlation. It is sensitive to outliers.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -114,8 +99,8 @@ of the observed and simulated array are removed before the computation.</p>
 </dd>
 <dt><strong>replace_inf: float, optional</strong></dt>
 <dd><p class="first last">If given, indicates which value to replace Inf values with in the two arrays. If None, when
-an inf value is found at the i-th position in the observed OR simulated array, the i-th value
-of the observed and simulated array are removed before the computation.</p>
+an inf value is found at the i-th position in the observed OR simulated array, the i-th
+value of the observed and simulated array are removed before the computation.</p>
 </dd>
 <dt><strong>remove_neg: boolean, optional</strong></dt>
 <dd><p class="first last">If True, when a negative value is found at the i-th position in the observed OR simulated
@@ -139,6 +124,11 @@ computation.</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">References</p>
+<ul class="simple">
+<li>Pearson, K. (1895). Note on regression and inheritance in the case of two parents.
+Proceedings of the Royal Society of London, 58, 240-242.</li>
+</ul>
 </dd></dl>
 
 </div>
@@ -158,14 +148,7 @@ computation.</p>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="hydrostats.metrics.spearman_r.html" title="spearman_r"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="hydrostats.metrics.r_squared.html" title="r_squared"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../Metrics.html" >Metrics</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

@@ -14,9 +14,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mle" href="hydrostats.metrics.mle.html" />
-    <link rel="prev" title="mae" href="hydrostats.metrics.mae.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,24 +25,18 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="hydrostats.metrics.mle.html" title="mle"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="hydrostats.metrics.mae.html" title="mae"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../Metrics.html" accesskey="U">Metrics</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h3><a href="../index.html">Table Of Contents</a></h3>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Visualization.html">Visualization</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Metrics.html">Metrics of Hydrological Skill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ens_metrics.html">Metrics of Ensamble Forecast Skill</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Analysis.html">Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref_table.html">Quick Reference Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plot_types.html">List of Plot Types</a></li>
@@ -52,12 +44,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../matplotlib_linestyles.html">Matplotlib Linestyles Help</a></li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="hydrostats.metrics.mae.html"
-                        title="previous chapter">mae</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="hydrostats.metrics.mle.html"
-                        title="next chapter">mle</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -113,8 +99,8 @@ of the observed and simulated array are removed before the computation.</p>
 </dd>
 <dt><strong>replace_inf: float, optional</strong></dt>
 <dd><p class="first last">If given, indicates which value to replace Inf values with in the two arrays. If None, when
-an inf value is found at the i-th position in the observed OR simulated array, the i-th value
-of the observed and simulated array are removed before the computation.</p>
+an inf value is found at the i-th position in the observed OR simulated array, the i-th
+value of the observed and simulated array are removed before the computation.</p>
 </dd>
 <dt><strong>remove_neg: boolean, optional</strong></dt>
 <dd><p class="first last">If True, when a negative value is found at the i-th position in the observed OR simulated
@@ -143,6 +129,17 @@ computation.</p>
 <li>Wang, Zhou, and Alan C. Bovik. “Mean Squared Error: Love It or Leave It? A New Look at Signal
 Fidelity Measures.” IEEE Signal Processing Magazine 26, no. 1 (2009): 98–117.</li>
 </ul>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats</span> <span class="k">as</span> <span class="nn">hs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">6.8</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hs</span><span class="o">.</span><span class="n">mse</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">obs</span><span class="p">)</span>
+<span class="go">0.4333333333333333</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -162,14 +159,7 @@ Fidelity Measures.” IEEE Signal Processing Magazine 26, no. 1 (2009): 98–117
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="hydrostats.metrics.mle.html" title="mle"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="hydrostats.metrics.mae.html" title="mae"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../Metrics.html" >Metrics</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

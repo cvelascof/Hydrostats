@@ -44,7 +44,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Visualization.html">Visualization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Metrics.html">Metrics of Hydrological Skill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ens_metrics.html">Metrics of Ensamble Forecast Skill</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Analysis.html">Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref_table.html">Quick Reference Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plot_types.html">List of Plot Types</a></li>
@@ -209,6 +210,7 @@ and the index of the maximum and minimum time lag values.</p>
 the two at different time lags</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats</span> <span class="k">as</span> <span class="nn">hs</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats.data</span> <span class="k">as</span> <span class="nn">hd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_columns</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Defining the URLs of the datasets</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sfpt_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/sfpt_data/magdalena-calamar_interim_data.csv&#39;</span>
@@ -219,33 +221,19 @@ the two at different time lags</p>
 </div>
 <p>There are two dataframes that are returned as part of the analysis.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Running the lag analysis</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">time_lag_df</span><span class="p">,</span> <span class="n">summary_df</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">time_lag</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> 
-<span class="gp">&gt;&gt;&gt; </span>                                      <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ME&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">,</span> <span class="s1">&#39;NSE&#39;</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">time_lag_df</span>
-<span class="go">                  r2         RMSE  KGE (2012)        dr</span>
-<span class="go">Lag Number</span>
-<span class="go">-30         0.646193  3142.795474    0.775328  0.691058</span>
-<span class="go">-29         0.656472  3093.387478    0.780866  0.696401</span>
-<span class="go">-28         0.666937  3042.665168    0.786412  0.701858</span>
-<span class="go">-27         0.677580  2990.611706    0.791957  0.707464</span>
-<span class="go">-26         0.688392  2937.216405    0.797488  0.713215</span>
-<span class="gp">... </span>             <span class="o">...</span>          <span class="o">...</span>         <span class="o">...</span>       <span class="o">...</span>
-<span class="go"> 26         0.715202  2802.314966    0.810747  0.746523</span>
-<span class="go"> 27         0.707765  2840.121175    0.807136  0.742619</span>
-<span class="go"> 28         0.700400  2877.262117    0.803508  0.738752</span>
-<span class="go"> 29         0.693112  2913.738136    0.799870  0.734911</span>
-<span class="go"> 30         0.685907  2949.540402    0.796226  0.731107</span>
-<span class="go"> &gt;&gt;&gt; summary_df</span>
-<span class="go">                     Max  Max Lag Number          Min  Min Lag Number</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time_lag_df</span><span class="p">,</span> <span class="n">summary_df</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">time_lag</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ME&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">,</span> <span class="s1">&#39;NSE&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summary_df</span>
+<span class="go">                    Max  Max Lag Number          Min  Min Lag Number</span>
+<span class="go">ME           174.740510           -28.0   174.740510           -24.0</span>
 <span class="go">r2             0.891854            -2.0     0.646193           -30.0</span>
 <span class="go">RMSE        3142.795474           -30.0  1754.455598            -2.0</span>
 <span class="go">KGE (2012)     0.877116            -2.0     0.775328           -30.0</span>
-<span class="go">dr             0.840604             0.0     0.691058           -30.0</span>
+<span class="go">NSE            0.856358            -2.0     0.539076           -30.0</span>
 </pre></div>
 </div>
 <p>A plot can be created that visualizes the different metrics throughout the time lags. It can be
 saved using the savefig parameter as well if desired.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hs</span><span class="o">.</span><span class="n">time_lag</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">,</span> <span class="s1">&#39;dr&#39;</span><span class="p">],</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">time_lag</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">,</span> <span class="s1">&#39;dr&#39;</span><span class="p">],</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/lag_plot1.png" src="../_images/lag_plot1.png" />

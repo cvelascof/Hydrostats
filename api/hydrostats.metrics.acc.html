@@ -14,9 +14,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mape" href="hydrostats.metrics.mape.html" />
-    <link rel="prev" title="spearman_r" href="hydrostats.metrics.spearman_r.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,24 +25,18 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="hydrostats.metrics.mape.html" title="mape"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="hydrostats.metrics.spearman_r.html" title="spearman_r"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../Metrics.html" accesskey="U">Metrics</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h3><a href="../index.html">Table Of Contents</a></h3>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Visualization.html">Visualization</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Metrics.html">Metrics of Hydrological Skill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ens_metrics.html">Metrics of Ensamble Forecast Skill</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Analysis.html">Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref_table.html">Quick Reference Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plot_types.html">List of Plot Types</a></li>
@@ -52,12 +44,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../matplotlib_linestyles.html">Matplotlib Linestyles Help</a></li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="hydrostats.metrics.spearman_r.html"
-                        title="previous chapter">spearman_r</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="hydrostats.metrics.mape.html"
-                        title="next chapter">mape</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -92,11 +78,11 @@
 <code class="descclassname">hydrostats.metrics.</code><code class="descname">acc</code><span class="sig-paren">(</span><em>simulated_array</em>, <em>observed_array</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/metrics.html#acc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.metrics.acc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the the anomaly correlation coefficient (ACC).</p>
 <img alt="../_images/ACC.png" src="../_images/ACC.png" />
-<p><strong>Range:</strong> -1 ≤ ACC ≤ 1. -1 indicates perfect negative correlation of the variation pattern of
-the anomalies, 0 indicates complete randomness of the variation pattern of the anomalies,
-1 indicates perfect correlation of the variation pattern of the anomalies.</p>
-<p><strong>Notes:</strong> Measures the correlation between the variation pattern of the simulated data
-compared to the observed data.</p>
+<p><strong>Range:</strong> -1 ≤ ACC ≤ 1. -1 indicates perfect negative correlation of the variation
+pattern of the anomalies, 0 indicates complete randomness of the variation patterns of the
+anomalies, 1 indicates perfect correlation of the variation pattern of the anomalies.</p>
+<p><strong>Notes:</strong> Common measure in the verification of spatial fields. Measures the correlation
+between the variation pattern of the simulated data compared to the observed data.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -146,8 +132,8 @@ computation.</p>
 Deterministic Forecast Skill.” Tellus A: Dynamic Meteorology and Oceanography 64,
 no. 1 (2012): 17531.</li>
 <li>Miyakoda, K., G. D. Hembree, R. F. Strickler, and I. Shulman. “Cumulative Results of Extended
-Forecast Experiments I. Model Performance for Winter Cases.” Monthly Weather Review 100, no. 12
-(1972): 836–55.</li>
+Forecast Experiments I. Model Performance for Winter Cases.” Monthly Weather Review 100, no.
+12(1972): 836–55.</li>
 <li>Murphy, Allan H., and Edward S. Epstein. “Skill Scores and Correlation Coefficients in Model
 Verification.” Monthly Weather Review 117, no. 3 (1989): 572–82.</li>
 </ul>
@@ -170,14 +156,7 @@ Verification.” Monthly Weather Review 117, no. 3 (1989): 572–82.</li>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="hydrostats.metrics.mape.html" title="mape"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="hydrostats.metrics.spearman_r.html" title="spearman_r"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../Metrics.html" >Metrics</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
