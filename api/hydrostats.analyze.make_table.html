@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>make_table &#8212; hydrostats 0.65 documentation</title>
+    <title>make_table &#8212; hydrostats 0.71 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -33,7 +33,7 @@
         <li class="right" >
           <a href="../Analysis.html" title="Analysis"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.71 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Analysis.html" accesskey="U">Analysis</a> &#187;</li> 
       </ul>
     </div>
@@ -90,7 +90,7 @@
 <h1>make_table<a class="headerlink" href="#make-table" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hydrostats.analyze.make_table">
-<code class="descclassname">hydrostats.analyze.</code><code class="descname">make_table</code><span class="sig-paren">(</span><em>merged_dataframe</em>, <em>metrics</em>, <em>seasonal_periods=None</em>, <em>mase_m=1</em>, <em>dmod_j=1</em>, <em>nse_mod_j=1</em>, <em>h6_mhe_k=1</em>, <em>h6_ahe_k=1</em>, <em>h6_rmshe_k=1</em>, <em>d1_p_obs_bar_p=None</em>, <em>lm_x_obs_bar_p=None</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em>, <em>to_csv=None</em>, <em>to_excel=None</em>, <em>location=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/analyze.html#make_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.analyze.make_table" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">hydrostats.analyze.</code><code class="descname">make_table</code><span class="sig-paren">(</span><em>merged_dataframe</em>, <em>metrics</em>, <em>seasonal_periods=None</em>, <em>mase_m=1</em>, <em>dmod_j=1</em>, <em>nse_mod_j=1</em>, <em>h6_mhe_k=1</em>, <em>h6_ahe_k=1</em>, <em>h6_rmshe_k=1</em>, <em>d1_p_obs_bar_p=None</em>, <em>lm_x_obs_bar_p=None</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em>, <em>to_csv=None</em>, <em>to_excel=None</em>, <em>location=None</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.analyze.make_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a table of user selected metrics with optional seasonal analysis.</p>
 <p>Creates a table with metrics as specified by the user. Seasonal periods can also be
 specified in order to compare different seasons and how well the simulated data matches the
@@ -183,6 +183,12 @@ containing the metrics specified.</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Notes</p>
+<p>If desired, users can export the tables to a CSV or Excel Workbook. This can be done using the built in methods
+of pandas. A link to CSV method can be found at
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_csv.html">https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_csv.html</a> and a link to the Excel
+method can be found at
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_excel.html">https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_excel.html</a></p>
 <p class="rubric">Examples</p>
 <p>First we need to get some data. The data here is pulled from the Streamflow Predication Tool
 model and the ECMWF forecasting model. We are comparing the two models in this example.</p>
@@ -207,10 +213,9 @@ model and the ECMWF forecasting model. We are comparing the two models in this e
 <span class="go">April-01:June-30        Magdalena  1394.640050     ...      0.813737    0.876890</span>
 <span class="go">July-01:September-30    Magdalena  1188.542871     ...      0.829492    0.831188</span>
 <span class="go">October-01:December-31  Magdalena  1410.852917     ...      0.793927    0.791257</span>
-
-<span class="go">[5 rows x 5 columns]</span>
 </pre></div>
 </div>
+<p>[5 rows x 5 columns]</p>
 <p>We can also write the table to a CSV or Excel worksheet.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ha</span><span class="o">.</span><span class="n">make_table</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">my_metrics</span><span class="p">,</span> <span class="n">seasonal</span><span class="p">,</span> <span class="n">remove_neg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_zero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;Magdalena&#39;</span><span class="p">,</span> <span class="n">to_csv</span><span class="o">=</span><span class="s1">&#39;magdalena_table.csv&#39;</span><span class="p">)</span>
 <span class="go">                         Location          MAE     ...           NSE  KGE (2012)</span>
@@ -219,10 +224,9 @@ model and the ECMWF forecasting model. We are comparing the two models in this e
 <span class="go">April-01:June-30        Magdalena  1394.640050     ...      0.813737    0.876890</span>
 <span class="go">July-01:September-30    Magdalena  1188.542871     ...      0.829492    0.831188</span>
 <span class="go">October-01:December-31  Magdalena  1410.852917     ...      0.793927    0.791257</span>
-
-<span class="go">[5 rows x 5 columns]</span>
 </pre></div>
 </div>
+<p>[5 rows x 5 columns]</p>
 </dd></dl>
 
 </div>
@@ -248,13 +252,13 @@ model and the ECMWF forecasting model. We are comparing the two models in this e
         <li class="right" >
           <a href="../Analysis.html" title="Analysis"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.71 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Analysis.html" >Analysis</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Wade Roberts.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.7.
     </div>
   </body>
 </html>

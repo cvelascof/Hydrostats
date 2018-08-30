@@ -1,0 +1,6 @@
+ens_mae
+=======
+
+.. currentmodule:: hydrostats.ens_metrics
+
+.. autofunction:: ens_mae

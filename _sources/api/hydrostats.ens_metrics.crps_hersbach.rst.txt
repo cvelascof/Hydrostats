@@ -1,0 +1,6 @@
+crps_hersbach
+=============
+
+.. currentmodule:: hydrostats.ens_metrics
+
+.. autofunction:: crps_hersbach

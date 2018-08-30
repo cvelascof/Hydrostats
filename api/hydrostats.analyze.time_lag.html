@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>time_lag &#8212; hydrostats 0.65 documentation</title>
+    <title>time_lag &#8212; hydrostats 0.71 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -33,7 +33,7 @@
         <li class="right" >
           <a href="hydrostats.analyze.make_table.html" title="make_table"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.71 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Analysis.html" accesskey="U">Analysis</a> &#187;</li> 
       </ul>
     </div>
@@ -90,9 +90,9 @@
 <h1>time_lag<a class="headerlink" href="#time-lag" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hydrostats.analyze.time_lag">
-<code class="descclassname">hydrostats.analyze.</code><code class="descname">time_lag</code><span class="sig-paren">(</span><em>merged_dataframe</em>, <em>metrics</em>, <em>interp_freq='6H'</em>, <em>interp_type='pchip'</em>, <em>shift_range=(-30</em>, <em>30)</em>, <em>mase_m=1</em>, <em>dmod_j=1</em>, <em>nse_mod_j=1</em>, <em>h6_mhe_k=1</em>, <em>h6_ahe_k=1</em>, <em>h6_rmshe_k=1</em>, <em>d1_p_obs_bar_p=None</em>, <em>lm_x_obs_bar_p=None</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em>, <em>plot=False</em>, <em>plot_title='Metric Values as Different Lags'</em>, <em>ylabel='Metric Value'</em>, <em>xlabel='Number of Lags'</em>, <em>save_fig=None</em>, <em>figsize=(10</em>, <em>6)</em>, <em>station=None</em>, <em>to_csv=None</em>, <em>to_excel=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/analyze.html#time_lag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.analyze.time_lag" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">hydrostats.analyze.</code><code class="descname">time_lag</code><span class="sig-paren">(</span><em>merged_dataframe</em>, <em>metrics</em>, <em>interp_freq='6H'</em>, <em>interp_type='pchip'</em>, <em>shift_range=(-30</em>, <em>30)</em>, <em>mase_m=1</em>, <em>dmod_j=1</em>, <em>nse_mod_j=1</em>, <em>h6_mhe_k=1</em>, <em>h6_ahe_k=1</em>, <em>h6_rmshe_k=1</em>, <em>d1_p_obs_bar_p=None</em>, <em>lm_x_obs_bar_p=None</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em>, <em>plot=False</em>, <em>plot_title='Metric Values as Different Lags'</em>, <em>ylabel='Metric Value'</em>, <em>xlabel='Number of Lags'</em>, <em>save_fig=None</em>, <em>figsize=(10</em>, <em>6)</em>, <em>station=None</em>, <em>to_csv=None</em>, <em>to_excel=None</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.analyze.time_lag" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check metric values between simulated and observed data at different time lags.</p>
-<p>Runs a time lag analysis to check for potential timing errors in datasets. Also can create a
+<p>Runs a time lag analysis to check for potential timing errors in the simulated data. Can also create a
 plot using matplotlib of the metric values at different shifts.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -184,13 +184,6 @@ name (e.g. /path/to/plot.png). A list of all available types of figures is given
 <dt><strong>station: str</strong></dt>
 <dd><p class="first last">The station of analysis. Includes the station in the table if given.</p>
 </dd>
-<dt><strong>to_csv: str</strong></dt>
-<dd><p class="first last">Filepath and file name of the csv that is written (e.g. r’/path/to/output_dir/file.csv’).</p>
-</dd>
-<dt><strong>to_excel: str</strong></dt>
-<dd><p class="first last">Filepath and file name of the excel workbook that is written
-(e.g. r’/path/to/output_dir/file.xlsx’).</p>
-</dd>
 </dl>
 </td>
 </tr>
@@ -205,10 +198,16 @@ and the index of the maximum and minimum time lag values.</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Notes</p>
+<p>If desired, users can export the tables to a CSV or Excel Workbook. This can be done using the built in methods
+of pandas. A link to CSV method can be found at
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_csv.html">https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_csv.html</a> and a link to the Excel
+method can be found at
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_excel.html">https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_excel.html</a></p>
 <p class="rubric">Examples</p>
 <p>Using data from the Streamflow prediction tool RAPID model and the ECMWF model, we can conpare
 the two at different time lags</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats</span> <span class="k">as</span> <span class="nn">hs</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats.analyze</span> <span class="k">as</span> <span class="nn">ha</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats.data</span> <span class="k">as</span> <span class="nn">hd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_columns</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="go">&gt;&gt;&gt;</span>
@@ -221,7 +220,7 @@ the two at different time lags</p>
 </div>
 <p>There are two dataframes that are returned as part of the analysis.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Running the lag analysis</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">time_lag_df</span><span class="p">,</span> <span class="n">summary_df</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">time_lag</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ME&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">,</span> <span class="s1">&#39;NSE&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time_lag_df</span><span class="p">,</span> <span class="n">summary_df</span> <span class="o">=</span> <span class="n">ha</span><span class="o">.</span><span class="n">time_lag</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ME&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">,</span> <span class="s1">&#39;NSE&#39;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">summary_df</span>
 <span class="go">                    Max  Max Lag Number          Min  Min Lag Number</span>
 <span class="go">ME           174.740510           -28.0   174.740510           -24.0</span>
@@ -233,7 +232,7 @@ the two at different time lags</p>
 </div>
 <p>A plot can be created that visualizes the different metrics throughout the time lags. It can be
 saved using the savefig parameter as well if desired.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">time_lag</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">,</span> <span class="s1">&#39;dr&#39;</span><span class="p">],</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ha</span><span class="o">.</span><span class="n">time_lag</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;KGE (2012)&#39;</span><span class="p">,</span> <span class="s1">&#39;dr&#39;</span><span class="p">],</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/lag_plot1.png" src="../_images/lag_plot1.png" />
@@ -262,13 +261,13 @@ saved using the savefig parameter as well if desired.</p>
         <li class="right" >
           <a href="hydrostats.analyze.make_table.html" title="make_table"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.71 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Analysis.html" >Analysis</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Wade Roberts.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.7.
     </div>
   </body>
 </html>

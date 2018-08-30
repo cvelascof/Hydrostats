@@ -1,0 +1,6 @@
+auroc
+=====
+
+.. currentmodule:: hydrostats.ens_metrics
+
+.. autofunction:: auroc

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>daily_std_error &#8212; hydrostats 0.65 documentation</title>
+    <title>daily_std_error &#8212; hydrostats 0.71 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -33,7 +33,7 @@
         <li class="right" >
           <a href="hydrostats.data.daily_average.html" title="daily_average"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.71 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Preprocessing.html" accesskey="U">Preprocessing</a> &#187;</li> 
       </ul>
     </div>
@@ -90,10 +90,61 @@
 <h1>daily_std_error<a class="headerlink" href="#daily-std-error" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hydrostats.data.daily_std_error">
-<code class="descclassname">hydrostats.data.</code><code class="descname">daily_std_error</code><span class="sig-paren">(</span><em>merged_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/data.html#daily_std_error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.data.daily_std_error" title="Permalink to this definition">¶</a></dt>
-<dd><p>Takes a dataframe with an index of datetime type and both recorded and predicted streamflow values and
-calculates the daily standard error of the streamflow over the course of the data. Returns a dataframe with
-the date format as MM/DD in the index and the two columns of the data’s standard error</p>
+<code class="descclassname">hydrostats.data.</code><code class="descname">daily_std_error</code><span class="sig-paren">(</span><em>merged_data</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.data.daily_std_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates daily seasonal standard error of the timeseries data in a DataFrame</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>merged_data: DataFrame</strong></dt>
+<dd><p class="first last">A pandas DataFrame with a datetime index and columns containing float type values.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>DataFrame</strong></dt>
+<dd><p class="first last">A pandas dataframe with a string type index of date representations and the daily seasonal standard error as
+float values in the columns.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats.data</span> <span class="k">as</span> <span class="nn">hd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_rows</span> <span class="o">=</span> <span class="mi">15</span>
+</pre></div>
+</div>
+<p>The data URLs contain streamflow data from two different models, and are provided from the Hydrostats Github page</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sfpt_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/sfpt_data/magdalena-calamar_interim_data.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glofas_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/GLOFAS_Data/magdalena-calamar_ECMWF_data.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">merge_data</span><span class="p">(</span><span class="n">sfpt_url</span><span class="p">,</span> <span class="n">glofas_url</span><span class="p">,</span> <span class="n">column_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Streamflow Prediction Tool&#39;</span><span class="p">,</span> <span class="s1">&#39;GLOFAS&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hd</span><span class="o">.</span><span class="n">daily_std_error</span><span class="p">(</span><span class="n">merged_df</span><span class="p">)</span>
+<span class="go">       Streamflow Prediction Tool      GLOFAS</span>
+<span class="go">01/01                  558.189895  494.958042</span>
+<span class="go">01/02                  553.290181  442.497656</span>
+<span class="go">01/03                  535.002487  432.096928</span>
+<span class="go">01/04                  514.511095  422.915060</span>
+<span class="go">01/05                  489.287216  411.861086</span>
+<span class="go">01/06                  463.321927  401.023620</span>
+<span class="go">01/07                  441.666108  395.703128</span>
+<span class="go">                           ...         ...</span>
+<span class="go">12/25                  613.876851  566.669886</span>
+<span class="go">12/26                  589.424434  567.179646</span>
+<span class="go">12/27                  582.957832  557.932109</span>
+<span class="go">12/28                  581.465297  540.021918</span>
+<span class="go">12/29                  573.949000  517.494155</span>
+<span class="go">12/30                  560.993945  495.040565</span>
+<span class="go">12/31                  546.904139  474.742075</span>
+<span class="go">[366 rows x 2 columns]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -119,13 +170,13 @@ the date format as MM/DD in the index and the two columns of the data’s standa
         <li class="right" >
           <a href="hydrostats.data.daily_average.html" title="daily_average"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.71 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Preprocessing.html" >Preprocessing</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Wade Roberts.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.7.
     </div>
   </body>
 </html>

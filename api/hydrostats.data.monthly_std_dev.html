@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>monthly_std_dev &#8212; hydrostats 0.65 documentation</title>
+    <title>monthly_std_dev &#8212; hydrostats 0.71 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -33,7 +33,7 @@
         <li class="right" >
           <a href="hydrostats.data.monthly_std_error.html" title="monthly_std_error"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.71 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Preprocessing.html" accesskey="U">Preprocessing</a> &#187;</li> 
       </ul>
     </div>
@@ -90,11 +90,57 @@
 <h1>monthly_std_dev<a class="headerlink" href="#monthly-std-dev" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hydrostats.data.monthly_std_dev">
-<code class="descclassname">hydrostats.data.</code><code class="descname">monthly_std_dev</code><span class="sig-paren">(</span><em>merged_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/data.html#monthly_std_dev"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.data.monthly_std_dev" title="Permalink to this definition">¶</a></dt>
-<dd><p>Takes a dataframe with an index of datetime type and both recorded and predicted streamflow values and
-calculates the monthly standard deviation of the streamflow over the course of the data.
-Returns a dataframe with the date format as MM in the index and the two columns of the data’s standard
-deviation</p>
+<code class="descclassname">hydrostats.data.</code><code class="descname">monthly_std_dev</code><span class="sig-paren">(</span><em>merged_data</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.data.monthly_std_dev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates monthly seasonal standard deviation of the timeseries data in a DataFrame</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>merged_data: DataFrame</strong></dt>
+<dd><p class="first last">A pandas DataFrame with a datetime index and columns containing float type values.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>DataFrame</strong></dt>
+<dd><p class="first last">A pandas dataframe with a string type index of date representations and the monthly seasonal standard deviation
+as float values in the columns.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats.data</span> <span class="k">as</span> <span class="nn">hd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_rows</span> <span class="o">=</span> <span class="mi">15</span>
+</pre></div>
+</div>
+<p>The data URLs contain streamflow data from two different models, and are provided from the Hydrostats Github page</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sfpt_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/sfpt_data/magdalena-calamar_interim_data.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glofas_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/GLOFAS_Data/magdalena-calamar_ECMWF_data.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">merge_data</span><span class="p">(</span><span class="n">sfpt_url</span><span class="p">,</span> <span class="n">glofas_url</span><span class="p">,</span> <span class="n">column_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Streamflow Prediction Tool&#39;</span><span class="p">,</span> <span class="s1">&#39;GLOFAS&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hd</span><span class="o">.</span><span class="n">monthly_std_dev</span><span class="p">(</span><span class="n">merged_df</span><span class="p">)</span>
+<span class="go">    Streamflow Prediction Tool       GLOFAS</span>
+<span class="go">01                 2483.087791  2346.587412</span>
+<span class="go">02                 2049.872689  1834.931830</span>
+<span class="go">03                 2762.489873  2401.929369</span>
+<span class="go">04                 4251.358318  4001.410267</span>
+<span class="go">05                 5458.296296  4597.889041</span>
+<span class="go">06                 4858.578846  4410.784791</span>
+<span class="go">07                 4494.550854  3802.392524</span>
+<span class="go">08                 4261.406429  3626.662349</span>
+<span class="go">09                 4645.650733  4011.522281</span>
+<span class="go">10                 4410.965472  3755.362766</span>
+<span class="go">11                 4760.001179  3773.190543</span>
+<span class="go">12                 4449.865762  3885.481991</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -120,13 +166,13 @@ deviation</p>
         <li class="right" >
           <a href="hydrostats.data.monthly_std_error.html" title="monthly_std_error"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.71 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Preprocessing.html" >Preprocessing</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Wade Roberts.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.7.
     </div>
   </body>
 </html>

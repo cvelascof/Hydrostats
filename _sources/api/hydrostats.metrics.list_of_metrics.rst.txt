@@ -1,0 +1,6 @@
+list_of_metrics
+===============
+
+.. currentmodule:: hydrostats.metrics
+
+.. autofunction:: list_of_metrics

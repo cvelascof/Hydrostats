@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>seasonal_period &#8212; hydrostats 0.65 documentation</title>
+    <title>seasonal_period &#8212; hydrostats 0.71 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -33,7 +33,7 @@
         <li class="right" >
           <a href="hydrostats.data.remove_nan_df.html" title="remove_nan_df"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.71 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Preprocessing.html" accesskey="U">Preprocessing</a> &#187;</li> 
       </ul>
     </div>
@@ -90,9 +90,108 @@
 <h1>seasonal_period<a class="headerlink" href="#seasonal-period" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hydrostats.data.seasonal_period">
-<code class="descclassname">hydrostats.data.</code><code class="descname">seasonal_period</code><span class="sig-paren">(</span><em>merged_dataframe</em>, <em>daily_period</em>, <em>time_range=None</em>, <em>numpy=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hydrostats/data.html#seasonal_period"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hydrostats.data.seasonal_period" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the seasonal period specified for the time series, between the specified time range. Can return either a
-pandas DataFrame or two numpy arrays</p>
+<code class="descclassname">hydrostats.data.</code><code class="descname">seasonal_period</code><span class="sig-paren">(</span><em>merged_dataframe</em>, <em>daily_period</em>, <em>time_range=None</em>, <em>numpy=False</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.data.seasonal_period" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a dataframe with a specified seasonal period</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>merged_dataframe: DataFrame</strong></dt>
+<dd><p class="first last">A pandas DataFrame with a datetime index and columns containing float type values.</p>
+</dd>
+<dt><strong>daily_period: tuple of str</strong></dt>
+<dd><p class="first last">A list of length two with strings representing the start and end dates of the seasonal period (e.g.
+[01-01, 01-31] for Jan 1 to Jan 31.</p>
+</dd>
+<dt><strong>time_range: tuple of str</strong></dt>
+<dd><p class="first last">A tuple of string values representing the start and end dates of the time range. Format is YYYY-MM-DD.</p>
+</dd>
+<dt><strong>numpy: bool</strong></dt>
+<dd><p class="first last">If True, two numpy arrays will be returned instead of a pandas dataframe</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>DataFrame</strong></dt>
+<dd><p class="first last">Pandas dataframe that has been truncated to fit the parameters specified for the seasonal period.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_rows</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats.data</span> <span class="k">as</span> <span class="nn">hd</span>
+</pre></div>
+</div>
+<p>Here an example DataFrame is made with appx three years of data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">example_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2000-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Simulated&#39;</span><span class="p">,</span> <span class="s1">&#39;Observed&#39;</span><span class="p">])</span>
+<span class="go">            Simulated  Observed</span>
+<span class="go">2000-01-01   0.862726  0.056597</span>
+<span class="go">2000-01-02   0.979643  0.915072</span>
+<span class="go">2000-01-03   0.857667  0.965057</span>
+<span class="go">2000-01-04   0.011238  0.033678</span>
+<span class="go">2000-01-05   0.011390  0.401728</span>
+<span class="go">2000-01-06   0.056505  0.047417</span>
+<span class="go">2000-01-07   0.615151  0.134103</span>
+<span class="go">               ...       ...</span>
+<span class="go">2002-09-20   0.883156  0.272355</span>
+<span class="go">2002-09-21   0.595319  0.406609</span>
+<span class="go">2002-09-22   0.415106  0.826873</span>
+<span class="go">2002-09-23   0.399449  0.656040</span>
+<span class="go">2002-09-24   0.243404  0.561899</span>
+<span class="go">2002-09-25   0.879932  0.551347</span>
+<span class="go">2002-09-26   0.787526  0.887288</span>
+<span class="go">[1000 rows x 2 columns]</span>
+</pre></div>
+</div>
+<p>Using this function, a new dataframe containing only the data values in january is returned.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seasonal_df_jan</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">seasonal_period</span><span class="p">(</span><span class="n">example_df</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;01-31&#39;</span><span class="p">))</span>
+<span class="go">            Simulated  Observed</span>
+<span class="go">2000-01-01   0.862726  0.056597</span>
+<span class="go">2000-01-02   0.979643  0.915072</span>
+<span class="go">2000-01-03   0.857667  0.965057</span>
+<span class="go">2000-01-04   0.011238  0.033678</span>
+<span class="go">2000-01-05   0.011390  0.401728</span>
+<span class="go">2000-01-06   0.056505  0.047417</span>
+<span class="go">2000-01-07   0.615151  0.134103</span>
+<span class="go">               ...       ...</span>
+<span class="go">2002-01-25   0.230580  0.363213</span>
+<span class="go">2002-01-26   0.579899  0.370847</span>
+<span class="go">2002-01-27   0.317925  0.120410</span>
+<span class="go">2002-01-28   0.196034  0.035715</span>
+<span class="go">2002-01-29   0.245429  0.974162</span>
+<span class="go">2002-01-30   0.156166  0.544797</span>
+<span class="go">2002-01-31   0.158595  0.311630</span>
+<span class="go">[93 rows x 2 columns]</span>
+</pre></div>
+</div>
+<p>We can also specify a time range if we only want the months of January in the year 2000 and 2001</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seasonal_df_jan</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">seasonal_period</span><span class="p">(</span><span class="n">example_df</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;01-31&#39;</span><span class="p">),</span> <span class="n">time_range</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2000-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2001-12-31&#39;</span><span class="p">))</span>
+<span class="go">            Simulated  Observed</span>
+<span class="go">2000-01-01   0.862726  0.056597</span>
+<span class="go">2000-01-02   0.979643  0.915072</span>
+<span class="go">2000-01-03   0.857667  0.965057</span>
+<span class="go">2000-01-04   0.011238  0.033678</span>
+<span class="go">2000-01-05   0.011390  0.401728</span>
+<span class="go">2000-01-06   0.056505  0.047417</span>
+<span class="go">2000-01-07   0.615151  0.134103</span>
+<span class="go">               ...       ...</span>
+<span class="go">2001-01-25   0.119188  0.043076</span>
+<span class="go">2001-01-26   0.896280  0.282883</span>
+<span class="go">2001-01-27   0.659078  0.230265</span>
+<span class="go">2001-01-28   0.667826  0.383687</span>
+<span class="go">2001-01-29   0.298459  0.738100</span>
+<span class="go">2001-01-30   0.336499  0.189036</span>
+<span class="go">2001-01-31   0.571562  0.783718</span>
+<span class="go">[62 rows x 2 columns]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -118,13 +217,13 @@ pandas DataFrame or two numpy arrays</p>
         <li class="right" >
           <a href="hydrostats.data.remove_nan_df.html" title="remove_nan_df"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.65 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.71 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Preprocessing.html" >Preprocessing</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Wade Roberts.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.7.
     </div>
   </body>
 </html>

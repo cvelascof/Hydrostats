@@ -1,6 +1,0 @@
-mde
-===
-
-.. currentmodule:: hydrostats.metrics
-
-.. autofunction:: mde

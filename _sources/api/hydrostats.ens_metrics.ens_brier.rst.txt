@@ -1,0 +1,6 @@
+ens_brier
+=========
+
+.. currentmodule:: hydrostats.ens_metrics
+
+.. autofunction:: ens_brier

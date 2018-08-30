@@ -1,0 +1,6 @@
+ens_pearson_r
+=============
+
+.. currentmodule:: hydrostats.ens_metrics
+
+.. autofunction:: ens_pearson_r

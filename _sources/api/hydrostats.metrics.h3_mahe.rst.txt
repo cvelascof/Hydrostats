@@ -1,6 +1,0 @@
-h3_mahe
-=======
-
-.. currentmodule:: hydrostats.metrics
-
-.. autofunction:: h3_mahe
