@@ -1,0 +1,6 @@
+skill_score
+===========
+
+.. currentmodule:: hydrostats.ens_metrics
+
+.. autofunction:: skill_score
