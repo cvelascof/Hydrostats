@@ -184,6 +184,51 @@ make red and black errorbars on the simulated and observed data, respectively).<
 </tr>
 </tbody>
 </table>
+<p class="rubric">Examples</p>
+<p>In this example two models are compared.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats.data</span> <span class="k">as</span> <span class="nn">hd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats.visual</span> <span class="k">as</span> <span class="nn">hv</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sfpt_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/sfpt_data/magdalena-calamar_interim_data.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glofas_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/GLOFAS_Data/magdalena-calamar_ECMWF_data.csv&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">merge_data</span><span class="p">(</span><span class="n">sfpt_url</span><span class="p">,</span> <span class="n">glofas_url</span><span class="p">,</span> <span class="n">column_names</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;SFPT&#39;</span><span class="p">,</span> <span class="s1">&#39;GLOFAS&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">seasonal_df</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">seasonal_period</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;04-01&#39;</span><span class="p">,</span> <span class="s1">&#39;07-31&#39;</span><span class="p">),</span> <span class="n">time_range</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;1986-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;1992-12-31&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">daily_avg_df</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">daily_average</span><span class="p">(</span><span class="n">merged_data</span><span class="o">=</span><span class="n">merged_df</span><span class="p">)</span>  <span class="c1"># Seasonal Daily Averages</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">daily_std_error</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">daily_std_error</span><span class="p">(</span><span class="n">merged_data</span><span class="o">=</span><span class="n">merged_df</span><span class="p">)</span>  <span class="c1"># Seasonal Daily Standard Deviation</span>
+</pre></div>
+</div>
+<p>The entire timeseries is plotted below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">merged_data_df</span><span class="o">=</span><span class="n">merged_df</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Hydrograph of Entire Time Series&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">linestyles</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">legend</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;SFPT&#39;</span><span class="p">,</span> <span class="s1">&#39;GLOFAS&#39;</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;Streamflow (cfs)&#39;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ME&#39;</span><span class="p">,</span> <span class="s1">&#39;NSE&#39;</span><span class="p">,</span> <span class="s1">&#39;SA&#39;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/plot_full1.png" src="../_images/plot_full1.png" />
+<p>The seasonal averages with standard error bars is plotted below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">merged_data_df</span><span class="o">=</span><span class="n">daily_avg_df</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Daily Average Streamflow (Standard Error)&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">legend</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;SFPT&#39;</span><span class="p">,</span> <span class="s1">&#39;GLOFAS&#39;</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">x_season</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;Streamflow (csm)&#39;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">linestyles</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">fig_size</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">ebars</span><span class="o">=</span><span class="n">daily_std_error</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">ecolor</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="n">tight_xlim</span><span class="o">=</span><span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span>     <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/plot_seasonal.png" src="../_images/plot_seasonal.png" />
 </dd></dl>
 
 </div>
