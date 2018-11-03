@@ -6,13 +6,15 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>merge_data &#8212; hydrostats 0.72 documentation</title>
+    <title>merge_data &#8212; hydrostats 0.73 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="daily_average" href="hydrostats.data.daily_average.html" />
@@ -33,13 +35,13 @@
         <li class="right" >
           <a href="../Preprocessing.html" title="Preprocessing (hydrostats.data)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.72 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.73 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Preprocessing.html" accesskey="U">Preprocessing (hydrostats.data)</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h3><a href="../index.html">Table Of Contents</a></h3>
+<h3><a href="../index.html">Table of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Preprocessing.html">Preprocessing (hydrostats.data)</a></li>
@@ -90,7 +92,7 @@
 <h1>merge_data<a class="headerlink" href="#merge-data" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hydrostats.data.merge_data">
-<code class="descclassname">hydrostats.data.</code><code class="descname">merge_data</code><span class="sig-paren">(</span><em>sim_fpath=None, obs_fpath=None, sim_df=None, obs_df=None, interpolate=None, column_names=['Simulated', 'Observed'], simulated_tz=None, observed_tz=None, interp_type='pchip'</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.data.merge_data" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">hydrostats.data.</code><code class="descname">merge_data</code><span class="sig-paren">(</span><em>sim_fpath=None</em>, <em>obs_fpath=None</em>, <em>sim_df=None</em>, <em>obs_df=None</em>, <em>interpolate=None</em>, <em>column_names=('Simulated'</em>, <em>'Observed')</em>, <em>simulated_tz=None</em>, <em>observed_tz=None</em>, <em>interp_type='pchip'</em>, <em>return_tz='Etc/UTC'</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.data.merge_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Merges two dataframes or csv files, depending on the input.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -137,13 +139,17 @@ observed data will be in the right column</p>
 Available types are found at
 <a class="reference external" href="http://pandas.pydata.org/pandas-docs/version/0.16.2/generated/pandas.DataFrame.interpolate.html">http://pandas.pydata.org/pandas-docs/version/0.16.2/generated/pandas.DataFrame.interpolate.html</a></p>
 </dd>
+<dt><strong>return_tz: str</strong></dt>
+<dd><p class="first last">What timezone the merged dataframe’s index should be returned as. Default is ‘Etc/UTC’, which is recommended
+for simplicity.</p>
+</dd>
 </dl>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>The only acceptable time deltas in the data are 15min, 30min, 45min, and any number of hours or
+<p>The only acceptable time frequencies in the data are 15min, 30min, 45min, and any number of hours or
 days in between.</p>
 <p>There are three scenarios to consider when merging your data:</p>
 <ol class="arabic simple">
@@ -168,7 +174,7 @@ the selected time series.</li>
 <p>The data URLs contain streamflow data from two different models, and are provided from the Hydrostats Github page</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sfpt_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/sfpt_data/magdalena-calamar_interim_data.csv&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">glofas_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/GLOFAS_Data/magdalena-calamar_ECMWF_data.csv&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">merge_data</span><span class="p">(</span><span class="n">sfpt_url</span><span class="p">,</span> <span class="n">glofas_url</span><span class="p">,</span> <span class="n">column_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Streamflow Prediction Tool&#39;</span><span class="p">,</span> <span class="s1">&#39;GLOFAS&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">merge_data</span><span class="p">(</span><span class="n">sfpt_url</span><span class="p">,</span> <span class="n">glofas_url</span><span class="p">,</span> <span class="n">column_names</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Streamflow Prediction Tool&#39;</span><span class="p">,</span> <span class="s1">&#39;GLOFAS&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -196,13 +202,13 @@ the selected time series.</li>
         <li class="right" >
           <a href="../Preprocessing.html" title="Preprocessing (hydrostats.data)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.72 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.73 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Preprocessing.html" >Preprocessing (hydrostats.data)</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Wade Roberts.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.7.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
     </div>
   </body>
 </html>

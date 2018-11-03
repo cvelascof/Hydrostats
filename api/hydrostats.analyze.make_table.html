@@ -6,13 +6,15 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>make_table &#8212; hydrostats 0.72 documentation</title>
+    <title>make_table &#8212; hydrostats 0.73 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="time_lag" href="hydrostats.analyze.time_lag.html" />
@@ -33,13 +35,13 @@
         <li class="right" >
           <a href="../Analysis.html" title="Analysis (hydrostats.analyze)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.72 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.73 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Analysis.html" accesskey="U">Analysis (hydrostats.analyze)</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h3><a href="../index.html">Table Of Contents</a></h3>
+<h3><a href="../index.html">Table of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Preprocessing.html">Preprocessing (hydrostats.data)</a></li>
@@ -90,7 +92,7 @@
 <h1>make_table<a class="headerlink" href="#make-table" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hydrostats.analyze.make_table">
-<code class="descclassname">hydrostats.analyze.</code><code class="descname">make_table</code><span class="sig-paren">(</span><em>merged_dataframe</em>, <em>metrics</em>, <em>seasonal_periods=None</em>, <em>mase_m=1</em>, <em>dmod_j=1</em>, <em>nse_mod_j=1</em>, <em>h6_mhe_k=1</em>, <em>h6_ahe_k=1</em>, <em>h6_rmshe_k=1</em>, <em>d1_p_obs_bar_p=None</em>, <em>lm_x_obs_bar_p=None</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em>, <em>to_csv=None</em>, <em>to_excel=None</em>, <em>location=None</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.analyze.make_table" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">hydrostats.analyze.</code><code class="descname">make_table</code><span class="sig-paren">(</span><em>merged_dataframe</em>, <em>metrics</em>, <em>seasonal_periods=None</em>, <em>mase_m=1</em>, <em>dmod_j=1</em>, <em>nse_mod_j=1</em>, <em>h6_mhe_k=1</em>, <em>h6_ahe_k=1</em>, <em>h6_rmshe_k=1</em>, <em>d1_p_obs_bar_p=None</em>, <em>lm_x_obs_bar_p=None</em>, <em>kge2009_s=(1</em>, <em>1</em>, <em>1)</em>, <em>kge2012_s=(1</em>, <em>1</em>, <em>1)</em>, <em>replace_nan=None</em>, <em>replace_inf=None</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em>, <em>location=None</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.analyze.make_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a table of user selected metrics with optional seasonal analysis.</p>
 <p>Creates a table with metrics as specified by the user. Seasonal periods can also be
 specified in order to compare different seasons and how well the simulated data matches the
@@ -139,6 +141,14 @@ metrics by default.</p>
 <dt><strong>lm_x_obs_bar_p: float, optional</strong></dt>
 <dd><p class="first last">Parameter for the Lagate McCabe Efficiency Index (lm_index).</p>
 </dd>
+<dt><strong>kge2009_s: tuple of floats</strong></dt>
+<dd><p class="first last">A tuple of floats of length three signifying how to weight the three values used in the Kling Gupta (2009)
+metric.</p>
+</dd>
+<dt><strong>kge2012_s: tuple of floats</strong></dt>
+<dd><p class="first last">A tuple of floats of length three signifying how to weight the three values used in the Kling Gupta (2012)
+metric.</p>
+</dd>
 <dt><strong>replace_nan: float, optional</strong></dt>
 <dd><p class="first last">If given, indicates which value to replace NaN values with in the two arrays. If None, when
 a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
@@ -158,13 +168,6 @@ computation.</p>
 <dd><p class="first last">If true, when a zero value is found at the i-th position in the observed OR simulated
 array, the i-th value of the observed AND simulated array are removed before the
 computation.</p>
-</dd>
-<dt><strong>to_csv: str</strong></dt>
-<dd><p class="first last">Filepath and file name of the csv that is written (e.g. r’/path/to/output_dir/file.csv’).</p>
-</dd>
-<dt><strong>to_excel: str</strong></dt>
-<dd><p class="first last">Filepath and file name of the excel workbook that is written
-(e.g. r’/path/to/output_dir/file.xlsx’).</p>
 </dd>
 <dt><strong>location: str</strong></dt>
 <dd><p class="first last">The name of the location that will be created as a column in the table that is created.
@@ -199,7 +202,7 @@ model and the ECMWF forecasting model. We are comparing the two models in this e
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sfpt_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/sfpt_data/magdalena-calamar_interim_data.csv&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">glofas_url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/waderoberts123/Hydrostats/raw/master/Sample_data/GLOFAS_Data/magdalena-calamar_ECMWF_data.csv&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Merging the data</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">merge_data</span><span class="p">(</span><span class="n">sfpt_url</span><span class="p">,</span> <span class="n">glofas_url</span><span class="p">,</span> <span class="n">column_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SFPT&#39;</span><span class="p">,</span> <span class="s1">&#39;GLOFAS&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">merge_data</span><span class="p">(</span><span class="n">sfpt_url</span><span class="p">,</span> <span class="n">glofas_url</span><span class="p">,</span> <span class="n">column_names</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;SFPT&#39;</span><span class="p">,</span> <span class="s1">&#39;GLOFAS&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Here we make a table and print the results</p>
@@ -252,13 +255,13 @@ model and the ECMWF forecasting model. We are comparing the two models in this e
         <li class="right" >
           <a href="../Analysis.html" title="Analysis (hydrostats.analyze)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.72 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.73 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Analysis.html" >Analysis (hydrostats.analyze)</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Wade Roberts.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.7.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
     </div>
   </body>
 </html>
