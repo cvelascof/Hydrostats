@@ -1,0 +1,240 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>julian_to_gregorian &#8212; hydrostats 0.74 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="merge_data" href="hydrostats.data.merge_data.html" />
+    <link rel="prev" title="Preprocessing (hydrostats.data)" href="../Preprocessing.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="hydrostats.data.merge_data.html" title="merge_data"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../Preprocessing.html" title="Preprocessing (hydrostats.data)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.74 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Preprocessing.html" accesskey="U">Preprocessing (hydrostats.data)</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Preprocessing.html">Preprocessing (hydrostats.data)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Visualization.html">Visualization (hydrostats.visual)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Metrics.html">Metrics of Hydrological Skill (hydrostats.metrics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ens_metrics.html">Metrics of Ensemble Forecast Skill (hydrostats.ens_metrics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis.html">Analysis (hydrostats.analyze)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref_table.html">Quick Reference Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot_types.html">List of Plot File Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../timezones.html">List of Timezones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matplotlib_linestyles.html">Matplotlib Linestyles Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../change_log.html">Release Notes</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../Preprocessing.html"
+                        title="previous chapter">Preprocessing (hydrostats.data)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="hydrostats.data.merge_data.html"
+                        title="next chapter">merge_data</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/hydrostats.data.julian_to_gregorian.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="julian-to-gregorian">
+<h1>julian_to_gregorian<a class="headerlink" href="#julian-to-gregorian" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="hydrostats.data.julian_to_gregorian">
+<code class="descclassname">hydrostats.data.</code><code class="descname">julian_to_gregorian</code><span class="sig-paren">(</span><em>dataframe</em>, <em>frequency=None</em>, <em>inplace=False</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.data.julian_to_gregorian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the index of the merged dataframe from julian float values to gregorian datetime
+values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>dataframe: Pandas DataFrame</strong></dt>
+<dd><p class="first last">A DataFrame with an index of type float</p>
+</dd>
+<dt><strong>frequency: string</strong></dt>
+<dd><p class="first last">Optional. Sometimes when converting from julian to gregorian there will be rounding errors
+due to the inability of computers to store floats as perfect decimals. Providing the
+frequency will automatically attempt to round the dates. A list of all the frequencies pandas provides is found
+<a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/timeseries.html#offset-aliases/">here</a>. Common frequencies
+include daily (“D”) and hourly (“H”).</p>
+</dd>
+<dt><strong>inplace: bool</strong></dt>
+<dd><p class="first last">Default False. If True, will modify the index of the dataframe in place rather than
+creating a copy and returning the copy. Use when the time series are very long and making
+a copy would take a large amount of memory</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>Pandas DataFrame</strong></dt>
+<dd><p class="first last">A pandas DataFrame with gregorian index.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hydrostats.data</span> <span class="k">as</span> <span class="nn">hd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># The julian dates in an array</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">julian_dates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2444239.5</span><span class="p">,</span> <span class="mf">2444239.5416666665</span><span class="p">,</span> <span class="mf">2444239.5833333335</span><span class="p">,</span> <span class="mf">2444239.625</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>                         <span class="mf">2444239.6666666665</span><span class="p">,</span> <span class="mf">2444239.7083333335</span><span class="p">,</span> <span class="mf">2444239.75</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>                         <span class="mf">2444239.7916666665</span><span class="p">,</span> <span class="mf">2444239.8333333335</span><span class="p">,</span> <span class="mf">2444239.875</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Creating a test dataframe</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>  <span class="c1"># Random data in the columns</span>
+<span class="gp">&gt;&gt;&gt; </span>                       <span class="n">columns</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Simulated Data&quot;</span><span class="p">,</span> <span class="s2">&quot;Observed Data&quot;</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>                       <span class="n">index</span><span class="o">=</span><span class="n">julian_dates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_df</span>
+<span class="go">              Simulated Data  Observed Data</span>
+<span class="go">2.444240e+06        0.764719       0.126610</span>
+<span class="go">2.444240e+06        0.372736       0.141392</span>
+<span class="go">2.444240e+06        0.008645       0.686477</span>
+<span class="go">2.444240e+06        0.656825       0.480444</span>
+<span class="go">2.444240e+06        0.555247       0.869409</span>
+<span class="go">2.444240e+06        0.643896       0.549590</span>
+<span class="go">2.444240e+06        0.242720       0.799617</span>
+<span class="go">2.444240e+06        0.432421       0.185760</span>
+<span class="go">2.444240e+06        0.694631       0.136986</span>
+<span class="go">2.444240e+06        0.700422       0.390415</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Making a new df with gregorian index</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_df_gregorian</span> <span class="o">=</span> <span class="n">hd</span><span class="o">.</span><span class="n">julian_to_gregorian</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_df_gregorian</span>
+<span class="go">                          Simulated Data   Observed Data</span>
+<span class="go">1980-01-01 00:00:00.000000      0.585454        0.457238</span>
+<span class="go">1980-01-01 01:00:00.028800      0.524764        0.083464</span>
+<span class="go">1980-01-01 01:59:59.971200      0.516821        0.416683</span>
+<span class="go">1980-01-01 03:00:00.000000      0.948483        0.553874</span>
+<span class="go">1980-01-01 04:00:00.028800      0.492280        0.232901</span>
+<span class="go">1980-01-01 04:59:59.971200      0.527967        0.296395</span>
+<span class="go">1980-01-01 06:00:00.000000      0.650018        0.212802</span>
+<span class="go">1980-01-01 07:00:00.028800      0.585592        0.802971</span>
+<span class="go">1980-01-01 07:59:59.971200      0.448243        0.665814</span>
+<span class="go">1980-01-01 09:00:00.000000      0.137395        0.201721</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Rounding can be applied due to floating point inaccuracy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_df_gregorian_rounded</span> <span class="o">=</span> <span class="n">julian_to_gregorian</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">)</span>  <span class="c1"># Hourly Rounding Frequency</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_df_gregorian_rounded</span>
+<span class="go">                     Simulated Data  Observed Data</span>
+<span class="go">1980-01-01 00:00:00        0.309527       0.938991</span>
+<span class="go">1980-01-01 01:00:00        0.872284       0.497708</span>
+<span class="go">1980-01-01 02:00:00        0.168046       0.225845</span>
+<span class="go">1980-01-01 03:00:00        0.954494       0.275607</span>
+<span class="go">1980-01-01 04:00:00        0.875885       0.194380</span>
+<span class="go">1980-01-01 05:00:00        0.236849       0.992770</span>
+<span class="go">1980-01-01 06:00:00        0.639346       0.029808</span>
+<span class="go">1980-01-01 07:00:00        0.855828       0.903927</span>
+<span class="go">1980-01-01 08:00:00        0.638805       0.916124</span>
+<span class="go">1980-01-01 09:00:00        0.273430       0.443980</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># The DataFrame can also be modified in place, increasing efficiency with large time series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">julian_to_gregorian</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_df</span>
+<span class="go">                     Simulated Data  Observed Data</span>
+<span class="go">1980-01-01 00:00:00        0.309527       0.938991</span>
+<span class="go">1980-01-01 01:00:00        0.872284       0.497708</span>
+<span class="go">1980-01-01 02:00:00        0.168046       0.225845</span>
+<span class="go">1980-01-01 03:00:00        0.954494       0.275607</span>
+<span class="go">1980-01-01 04:00:00        0.875885       0.194380</span>
+<span class="go">1980-01-01 05:00:00        0.236849       0.992770</span>
+<span class="go">1980-01-01 06:00:00        0.639346       0.029808</span>
+<span class="go">1980-01-01 07:00:00        0.855828       0.903927</span>
+<span class="go">1980-01-01 08:00:00        0.638805       0.916124</span>
+<span class="go">1980-01-01 09:00:00        0.273430       0.443980</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="hydrostats.data.merge_data.html" title="merge_data"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../Preprocessing.html" title="Preprocessing (hydrostats.data)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.74 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Preprocessing.html" >Preprocessing (hydrostats.data)</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Wade Roberts.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

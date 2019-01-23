@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>merge_data &#8212; hydrostats 0.73 documentation</title>
+    <title>merge_data &#8212; hydrostats 0.74 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -14,11 +14,10 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="daily_average" href="hydrostats.data.daily_average.html" />
-    <link rel="prev" title="Preprocessing (hydrostats.data)" href="../Preprocessing.html" /> 
+    <link rel="prev" title="julian_to_gregorian" href="hydrostats.data.julian_to_gregorian.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -33,9 +32,9 @@
           <a href="hydrostats.data.daily_average.html" title="daily_average"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../Preprocessing.html" title="Preprocessing (hydrostats.data)"
+          <a href="hydrostats.data.julian_to_gregorian.html" title="julian_to_gregorian"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.73 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.74 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Preprocessing.html" accesskey="U">Preprocessing (hydrostats.data)</a> &#187;</li> 
       </ul>
     </div>
@@ -47,17 +46,18 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../Preprocessing.html">Preprocessing (hydrostats.data)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Visualization.html">Visualization (hydrostats.visual)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Metrics.html">Metrics of Hydrological Skill (hydrostats.metrics)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ens_metrics.html">Metrics of Ensamble Forecast Skill (hydrostats.ens_metrics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ens_metrics.html">Metrics of Ensemble Forecast Skill (hydrostats.ens_metrics)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Analysis.html">Analysis (hydrostats.analyze)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref_table.html">Quick Reference Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plot_types.html">List of Plot File Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../timezones.html">List of Timezones</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../matplotlib_linestyles.html">Matplotlib Linestyles Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../change_log.html">Release Notes</a></li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../Preprocessing.html"
-                        title="previous chapter">Preprocessing (hydrostats.data)</a></p>
+  <p class="topless"><a href="hydrostats.data.julian_to_gregorian.html"
+                        title="previous chapter">julian_to_gregorian</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="hydrostats.data.daily_average.html"
                         title="next chapter">daily_average</a></p>
@@ -92,7 +92,7 @@
 <h1>merge_data<a class="headerlink" href="#merge-data" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hydrostats.data.merge_data">
-<code class="descclassname">hydrostats.data.</code><code class="descname">merge_data</code><span class="sig-paren">(</span><em>sim_fpath=None</em>, <em>obs_fpath=None</em>, <em>sim_df=None</em>, <em>obs_df=None</em>, <em>interpolate=None</em>, <em>column_names=('Simulated'</em>, <em>'Observed')</em>, <em>simulated_tz=None</em>, <em>observed_tz=None</em>, <em>interp_type='pchip'</em>, <em>return_tz='Etc/UTC'</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.data.merge_data" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">hydrostats.data.</code><code class="descname">merge_data</code><span class="sig-paren">(</span><em>sim_fpath=None</em>, <em>obs_fpath=None</em>, <em>sim_df=None</em>, <em>obs_df=None</em>, <em>interpolate=None</em>, <em>column_names=('Simulated'</em>, <em>'Observed')</em>, <em>simulated_tz=None</em>, <em>observed_tz=None</em>, <em>interp_type='pchip'</em>, <em>return_tz='Etc/UTC'</em>, <em>julian=False</em>, <em>julian_freq=None</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.data.merge_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Merges two dataframes or csv files, depending on the input.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -118,7 +118,7 @@ and the simulated data values in column 0.</p>
 and the simulated data values in column 0.</p>
 </dd>
 <dt><strong>interpolate: str</strong></dt>
-<dd><p class="first last">Must be either ‘observed’ or ‘simulated’. Specifies which dataset you would like to
+<dd><p class="first last">Must be either ‘observed’ or ‘simulated’. Specifies which data set you would like to
 interpolate if interpolation is needed to properly merge the data.</p>
 </dd>
 <dt><strong>column_names: tuple of str</strong></dt>
@@ -142,6 +142,15 @@ Available types are found at
 <dt><strong>return_tz: str</strong></dt>
 <dd><p class="first last">What timezone the merged dataframe’s index should be returned as. Default is ‘Etc/UTC’, which is recommended
 for simplicity.</p>
+</dd>
+<dt><strong>julian: bool</strong></dt>
+<dd><p class="first last">If True, will parse the first column of the file to a datetime index from julian floating point time
+representation, this is only valid when supplying the sim_fpath and obs_fpath parameters. Users supplying two
+DataFrame objects must convert the index from Julian to Gregorian using the julian_to_gregorian function in this
+module</p>
+</dd>
+<dt><strong>julian_freq: str</strong></dt>
+<dd><p class="first last">A string representing the frequency of the julian dates so that they can be rounded. See examples for usage.</p>
 </dd>
 </dl>
 </td>
@@ -200,15 +209,15 @@ the selected time series.</li>
           <a href="hydrostats.data.daily_average.html" title="daily_average"
              >next</a> |</li>
         <li class="right" >
-          <a href="../Preprocessing.html" title="Preprocessing (hydrostats.data)"
+          <a href="hydrostats.data.julian_to_gregorian.html" title="julian_to_gregorian"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.73 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hydrostats 0.74 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Preprocessing.html" >Preprocessing (hydrostats.data)</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Wade Roberts.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
     </div>
   </body>
 </html>

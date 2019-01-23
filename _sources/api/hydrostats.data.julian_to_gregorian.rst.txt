@@ -1,0 +1,6 @@
+julian_to_gregorian
+===================
+
+.. currentmodule:: hydrostats.data
+
+.. autofunction:: julian_to_gregorian
