@@ -93,7 +93,7 @@
 <h1>ens_crps<a class="headerlink" href="#ens-crps" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hydrostats.ens_metrics.ens_crps">
-<code class="descclassname">hydrostats.ens_metrics.</code><code class="descname">ens_crps</code><span class="sig-paren">(</span><em>obs</em>, <em>fcst_ens</em>, <em>adj=nan</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.ens_metrics.ens_crps" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">hydrostats.ens_metrics.</code><code class="descname">ens_crps</code><span class="sig-paren">(</span><em>obs</em>, <em>fcst_ens</em>, <em>adj=nan</em>, <em>remove_neg=False</em>, <em>remove_zero=False</em>, <em>llvm=True</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.ens_metrics.ens_crps" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the ensemble-adjusted Continuous Ranked Probability Score (CRPS)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -122,6 +122,11 @@ computation.</p>
 <dd><p class="first last">If true, when a zero value is found at the i-th position in the observed OR ensemble
 array, the i-th value of the observed AND ensemble array are removed before the
 computation.</p>
+</dd>
+<dt><strong>llvm: bool</strong></dt>
+<dd><p class="first last">If true (default) the crps will be calculated using the numba module, which uses the LLVM compiler
+infrastructure for enhanced performance. If this is not wanted, then set it to false for a pure python
+implementation.</p>
 </dd>
 </dl>
 </td>
