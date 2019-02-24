@@ -7,14 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Metrics of Hydrological Skill (hydrostats.metrics) &#8212; hydrostats 0.75 documentation</title>
-    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/language_data.js"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Metrics of Ensemble Forecast Skill (hydrostats.ens_metrics)" href="ens_metrics.html" />
@@ -37,7 +39,43 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">hydrostats 0.75 documentation</a> &#187;</li> 
       </ul>
-    </div>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="metrics-of-hydrological-skill-hydrostats-metrics">
+<h1>Metrics of Hydrological Skill (hydrostats.metrics)<a class="headerlink" href="#metrics-of-hydrological-skill-hydrostats-metrics" title="Permalink to this headline">¶</a></h1>
+<p>The metrics in Hydrostats are available through the HydroErr package. Below is a link to the HydroErr
+documentation page that lists all of the metrics contained in the package.</p>
+<div class="section" id="link">
+<h2>Link<a class="headerlink" href="#link" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://byu-hydroinformatics.github.io/HydroErr/list_of_metrics.html">https://byu-hydroinformatics.github.io/HydroErr/list_of_metrics.html</a></p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>The metrics can be imported into your scripts as part of the metrics module. An example is provided below showing how to
+use the metrics included in the package from HydroErr (if you would prefer to only use the Hydrostats package and not
+just import the HydroErr package).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="kn">import</span> <span class="nn">hydrostats.metrics</span> <span class="kn">as</span> <span class="nn">hm</span>
+</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">])</span>
+<span class="n">obs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">6.8</span><span class="p">])</span>
+
+<span class="n">mean_error</span> <span class="o">=</span> <span class="n">hm</span><span class="o">.</span><span class="n">me</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">obs</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mean_error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h3><a href="index.html">Table of Contents</a></h3>
@@ -82,42 +120,6 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="metrics-of-hydrological-skill-hydrostats-metrics">
-<h1>Metrics of Hydrological Skill (hydrostats.metrics)<a class="headerlink" href="#metrics-of-hydrological-skill-hydrostats-metrics" title="Permalink to this headline">¶</a></h1>
-<p>The metrics in Hydrostats are available through the HydroErr package. Below is a link to the HydroErr
-documentation page that lists all of the metrics contained in the package.</p>
-<div class="section" id="link">
-<h2>Link<a class="headerlink" href="#link" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://byu-hydroinformatics.github.io/HydroErr/list_of_metrics.html">https://byu-hydroinformatics.github.io/HydroErr/list_of_metrics.html</a></p>
-</div>
-<div class="section" id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<p>The metrics can be imported into your scripts as part of the metrics module. An example is provided below showing how to
-use the metrics included in the package from HydroErr (if you would prefer to only use the Hydrostats package and not
-just import the HydroErr package).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="kn">import</span> <span class="nn">hydrostats.metrics</span> <span class="kn">as</span> <span class="nn">hm</span>
-</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-
-<span class="n">sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">])</span>
-<span class="n">obs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">6.8</span><span class="p">])</span>
-
-<span class="n">mean_error</span> <span class="o">=</span> <span class="n">hm</span><span class="o">.</span><span class="n">me</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">obs</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">mean_error</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-
-
-          </div>
-        </div>
-      </div>
       <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -139,7 +141,7 @@ just import the HydroErr package).</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, Wade Roberts.
+        &#169; Copyright 2019, Wade Roberts.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
     </div>
   </body>
