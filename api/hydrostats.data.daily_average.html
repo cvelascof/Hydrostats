@@ -51,7 +51,7 @@
 <h1>daily_average<a class="headerlink" href="#daily-average" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hydrostats.data.daily_average">
-<code class="descclassname">hydrostats.data.</code><code class="descname">daily_average</code><span class="sig-paren">(</span><em>merged_data</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.data.daily_average" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">hydrostats.data.</code><code class="descname">daily_average</code><span class="sig-paren">(</span><em>merged_data</em>, <em>rolling=False</em><span class="sig-paren">)</span><a class="headerlink" href="#hydrostats.data.daily_average" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates daily seasonal averages of the timeseries data in a DataFrame</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -60,6 +60,9 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
 <dt><strong>merged_data: DataFrame</strong></dt>
 <dd><p class="first last">A pandas DataFrame with a datetime index and columns containing float type values.</p>
+</dd>
+<dt><strong>rolling: bool</strong></dt>
+<dd><p class="first last">If True, will calculate the rolling seasonal average.</p>
 </dd>
 </dl>
 </td>
